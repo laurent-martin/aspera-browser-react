@@ -1,0 +1,32 @@
+{
+  "toolbar": {
+    "newFolder": "مجلد جديد",
+    "search": "بحث..."
+  },
+  "messages": {
+    "dropFiles": "أسقط الملفات هنا للرفع",
+    "loading": "جاري التحميل...",
+    "noFiles": "لم يتم العثور على ملفات",
+    "emptyDirectory": "فارغ"
+  },
+  "viewModes": {
+    "list": "عرض القائمة",
+    "cards": "عرض البطاقات"
+  },
+  "table": {
+    "headers": {
+      "type": "النوع",
+      "name": "الاسم",
+      "size": "الحجم",
+      "modified": "تاريخ التعديل"
+    }
+  },
+  "actions": {
+    "openFolder": "انقر نقرًا مزدوجًا لفتح المجلد",
+    "preview": "انقر للمعاينة"
+  },
+  "types": {
+    "folder": "مجلد",
+    "file": "ملف"
+  }
+}

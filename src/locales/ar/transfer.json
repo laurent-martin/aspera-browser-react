@@ -1,0 +1,40 @@
+{
+  "panel": {
+    "title": "عمليات النقل",
+    "running": "{{count}} قيد التشغيل",
+    "noActiveTransfers": "لا توجد عمليات نقل نشطة"
+  },
+  "status": {
+    "initiating": "جاري البدء",
+    "queued": "في قائمة الانتظار",
+    "running": "قيد التشغيل",
+    "completed": "مكتمل",
+    "failed": "فشل",
+    "cancelled": "ملغى",
+    "willretry": "سيعاد المحاولة",
+    "removed": "تمت الإزالة"
+  },
+  "details": {
+    "currentFile": "الملف الحالي:",
+    "numberOfFiles": "عدد الملفات:",
+    "error": "خطأ:",
+    "duration": "المدة:",
+    "eta": "الوقت المتبقي: {{time}}",
+    "openFolder": "فتح المجلد"
+  },
+  "direction": {
+    "send": "رفع",
+    "receive": "تنزيل"
+  },
+  "upload": {
+    "initiated": "تم بدء الرفع لـ {{count}} ملف(ات)",
+    "selectFiles": "حدد الملفات للرفع في نافذة Aspera"
+  },
+  "agent": {
+    "check": "فحص الوكيل",
+    "label": "إصدار الوكيل:",
+    "available": "الوكيل متاح",
+    "unknown": "إصدار غير معروف",
+    "unavailable": "الوكيل غير متاح"
+  }
+}

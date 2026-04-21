@@ -1,0 +1,25 @@
+{
+  "title": "Ajuda",
+  "sections": {
+    "navigation": {
+      "title": "Navegação",
+      "content": "Clique em uma pasta para acessá-la. Use a trilha de navegação para voltar."
+    },
+    "fileSelection": {
+      "title": "Seleção de Arquivos",
+      "content": "Marque as caixas para selecionar arquivos. Use a caixa de seleção do cabeçalho para selecionar todos."
+    },
+    "download": {
+      "title": "Baixar",
+      "content": "Selecione os arquivos e clique em \"Baixar\" para recuperá-los."
+    },
+    "upload": {
+      "title": "Enviar",
+      "content": "Clique em \"Enviar\" ou arraste e solte arquivos na área."
+    },
+    "viewModes": {
+      "title": "Modos de Visualização",
+      "content": "Alterne entre visualização em lista e em cartões usando os ícones no canto superior direito."
+    }
+  }
+}

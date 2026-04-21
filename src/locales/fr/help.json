@@ -1,0 +1,25 @@
+{
+  "title": "Aide",
+  "sections": {
+    "navigation": {
+      "title": "Navigation",
+      "content": "Cliquez sur un dossier pour y accéder. Utilisez le fil d'Ariane pour revenir en arrière."
+    },
+    "fileSelection": {
+      "title": "Sélection de fichiers",
+      "content": "Cochez les cases pour sélectionner des fichiers. Utilisez la case d'en-tête pour tout sélectionner."
+    },
+    "download": {
+      "title": "Téléchargement",
+      "content": "Sélectionnez des fichiers et cliquez sur \"Télécharger\" pour les récupérer."
+    },
+    "upload": {
+      "title": "Envoi",
+      "content": "Cliquez sur \"Envoyer\" ou glissez-déposez des fichiers dans la zone."
+    },
+    "viewModes": {
+      "title": "Modes d'affichage",
+      "content": "Basculez entre la vue liste et la vue cartes en utilisant les icônes en haut à droite."
+    }
+  }
+}

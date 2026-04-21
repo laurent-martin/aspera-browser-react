@@ -1,0 +1,32 @@
+{
+  "toolbar": {
+    "newFolder": "新建文件夹",
+    "search": "搜索..."
+  },
+  "messages": {
+    "dropFiles": "将文件拖放到此处上传",
+    "loading": "加载中...",
+    "noFiles": "未找到文件",
+    "emptyDirectory": "空"
+  },
+  "viewModes": {
+    "list": "列表视图",
+    "cards": "卡片视图"
+  },
+  "table": {
+    "headers": {
+      "type": "类型",
+      "name": "名称",
+      "size": "大小",
+      "modified": "修改时间"
+    }
+  },
+  "actions": {
+    "openFolder": "双击打开文件夹",
+    "preview": "点击预览"
+  },
+  "types": {
+    "folder": "文件夹",
+    "file": "文件"
+  }
+}

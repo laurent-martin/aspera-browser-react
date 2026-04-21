@@ -1,0 +1,40 @@
+{
+  "panel": {
+    "title": "传输",
+    "running": "{{count}} 正在运行",
+    "noActiveTransfers": "无活动传输"
+  },
+  "status": {
+    "initiating": "初始化中",
+    "queued": "队列中",
+    "running": "运行中",
+    "completed": "已完成",
+    "failed": "失败",
+    "cancelled": "已取消",
+    "willretry": "将重试",
+    "removed": "已移除"
+  },
+  "details": {
+    "currentFile": "当前文件：",
+    "numberOfFiles": "文件数量：",
+    "error": "错误：",
+    "duration": "持续时间：",
+    "eta": "预计时间：{{time}}",
+    "openFolder": "打开文件夹"
+  },
+  "direction": {
+    "send": "上传",
+    "receive": "下载"
+  },
+  "upload": {
+    "initiated": "已为 {{count}} 个文件启动上传",
+    "selectFiles": "在 Aspera 窗口中选择要上传的文件"
+  },
+  "agent": {
+    "check": "检查代理",
+    "label": "代理版本：",
+    "available": "代理可用",
+    "unknown": "未知版本",
+    "unavailable": "代理不可用"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "title": "帮助",
+  "sections": {
+    "navigation": {
+      "title": "导航",
+      "content": "点击文件夹以访问。使用面包屑导航返回。"
+    },
+    "fileSelection": {
+      "title": "文件选择",
+      "content": "勾选复选框以选择文件。使用标题复选框选择全部。"
+    },
+    "download": {
+      "title": "下载",
+      "content": "选择文件并点击\"下载\"以检索它们。"
+    },
+    "upload": {
+      "title": "上传",
+      "content": "点击\"上传\"或将文件拖放到区域中。"
+    },
+    "viewModes": {
+      "title": "视图模式",
+      "content": "使用右上角的图标在列表视图和卡片视图之间切换。"
+    }
+  }
+}

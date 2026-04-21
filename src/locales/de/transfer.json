@@ -1,0 +1,40 @@
+{
+  "panel": {
+    "title": "Übertragungen",
+    "running": "{{count}} läuft",
+    "noActiveTransfers": "Keine aktiven Übertragungen"
+  },
+  "status": {
+    "initiating": "Initialisierung",
+    "queued": "In Warteschlange",
+    "running": "Läuft",
+    "completed": "Abgeschlossen",
+    "failed": "Fehlgeschlagen",
+    "cancelled": "Abgebrochen",
+    "willretry": "Wird wiederholt",
+    "removed": "Entfernt"
+  },
+  "details": {
+    "currentFile": "Aktuelle Datei:",
+    "numberOfFiles": "Anzahl der Dateien:",
+    "error": "Fehler:",
+    "duration": "Dauer:",
+    "eta": "Verbleibende Zeit: {{time}}",
+    "openFolder": "Ordner öffnen"
+  },
+  "direction": {
+    "send": "Upload",
+    "receive": "Download"
+  },
+  "upload": {
+    "initiated": "Upload für {{count}} Datei(en) initiiert",
+    "selectFiles": "Wählen Sie die hochzuladenden Dateien im Aspera-Fenster aus"
+  },
+  "agent": {
+    "check": "Agent prüfen",
+    "label": "Agent-Version:",
+    "available": "Agent verfügbar",
+    "unknown": "Unbekannte Version",
+    "unavailable": "Agent nicht verfügbar"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "toolbar": {
+    "newFolder": "新しいフォルダ",
+    "search": "検索..."
+  },
+  "messages": {
+    "dropFiles": "ファイルをここにドロップしてアップロード",
+    "loading": "読み込み中...",
+    "noFiles": "ファイルが見つかりません",
+    "emptyDirectory": "空"
+  },
+  "viewModes": {
+    "list": "リスト表示",
+    "cards": "カード表示"
+  },
+  "table": {
+    "headers": {
+      "type": "タイプ",
+      "name": "名前",
+      "size": "サイズ",
+      "modified": "更新日時"
+    }
+  },
+  "actions": {
+    "openFolder": "ダブルクリックでフォルダを開く",
+    "preview": "クリックしてプレビュー"
+  },
+  "types": {
+    "folder": "フォルダ",
+    "file": "ファイル"
+  }
+}

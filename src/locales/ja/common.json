@@ -1,0 +1,40 @@
+{
+  "app": {
+    "name": "Aspera Browser",
+    "prefix": "IBM"
+  },
+  "actions": {
+    "refresh": "更新",
+    "download": "ダウンロード",
+    "upload": "アップロード",
+    "uploadFiles": "ファイルをアップロード",
+    "uploadFolder": "フォルダをアップロード",
+    "delete": "削除",
+    "pause": "一時停止",
+    "resume": "再開",
+    "remove": "削除",
+    "clearInactive": "非アクティブをクリア",
+    "confirm": "確認",
+    "cancel": "キャンセル"
+  },
+  "labels": {
+    "settings": "設定",
+    "accounts": "アカウント",
+    "transferActivity": "転送アクティビティ",
+    "help": "ヘルプ"
+  },
+  "settings": {
+    "menu": {
+      "disconnect": "切断",
+      "configureAccount": "アカウント作成",
+      "accounts": "設定済みアカウント",
+      "editAccount": "アカウント編集",
+      "deleteAccount": "アカウント削除"
+    }
+  },
+  "language": {
+    "menuAriaLabel": "言語を選択",
+    "title": "言語",
+    "nativeName": "日本語"
+  }
+}

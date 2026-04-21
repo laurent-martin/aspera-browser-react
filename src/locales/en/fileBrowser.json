@@ -1,0 +1,32 @@
+{
+  "toolbar": {
+    "newFolder": "New Folder",
+    "search": "Search..."
+  },
+  "messages": {
+    "dropFiles": "Drop files here to upload",
+    "loading": "Loading...",
+    "noFiles": "No files found",
+    "emptyDirectory": "Empty"
+  },
+  "viewModes": {
+    "list": "List view",
+    "cards": "Card view"
+  },
+  "table": {
+    "headers": {
+      "type": "Type",
+      "name": "Name",
+      "size": "Size",
+      "modified": "Modified"
+    }
+  },
+  "actions": {
+    "openFolder": "Double-click to open folder",
+    "preview": "Click to preview"
+  },
+  "types": {
+    "folder": "Folder",
+    "file": "File"
+  }
+}

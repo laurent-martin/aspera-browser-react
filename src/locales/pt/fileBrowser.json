@@ -1,0 +1,32 @@
+{
+  "toolbar": {
+    "newFolder": "Nova Pasta",
+    "search": "Pesquisar..."
+  },
+  "messages": {
+    "dropFiles": "Solte os arquivos aqui para enviar",
+    "loading": "Carregando...",
+    "noFiles": "Nenhum arquivo encontrado",
+    "emptyDirectory": "Vazio"
+  },
+  "viewModes": {
+    "list": "Visualização em lista",
+    "cards": "Visualização em cartões"
+  },
+  "table": {
+    "headers": {
+      "type": "Tipo",
+      "name": "Nome",
+      "size": "Tamanho",
+      "modified": "Modificado"
+    }
+  },
+  "actions": {
+    "openFolder": "Clique duas vezes para abrir a pasta",
+    "preview": "Clique para visualizar"
+  },
+  "types": {
+    "folder": "Pasta",
+    "file": "Arquivo"
+  }
+}

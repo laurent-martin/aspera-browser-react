@@ -1,0 +1,121 @@
+.app-layout {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.connection-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    color: #000000;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 48px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* The Carbon header uses a fixed position, so we need to offset it */
+.app-body {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    margin-top: 48px;
+    /* Carbon Header height */
+    min-height: 0;
+}
+
+.app-content {
+    flex: 1;
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: #ffffff;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0;
+    max-height: 100%;
+}
+
+.side-panel {
+    width: 400px;
+    border-left: 1px solid #e0e0e0;
+    background-color: #ffffff;
+    overflow-y: auto;
+}
+
+.help-panel {
+    padding: 1rem;
+}
+
+.help-panel h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.help-content h4 {
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f62fe;
+}
+
+.help-content p {
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+    color: #525252;
+}
+
+/* Fix tooltip position for language button (last button in header) */
+.cds--header__action:last-child .cds--popover-container,
+.cds--header__action:last-child .cds--tooltip {
+    transform: translateX(-100%) !important;
+    left: auto !important;
+    right: 0 !important;
+}
+
+.cds--header__action:last-child .cds--popover-caret,
+.cds--header__action:last-child .cds--tooltip__caret {
+    left: auto !important;
+    right: 1rem !important;
+}
+
+/* Warning indicator for Web Agent not available */
+.cds--header__action.web-agent-warning {
+    position: relative;
+}
+
+.cds--header__action.web-agent-warning::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #da1e28;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}
+
+/* Success indicator for Web Agent available */
+.cds--header__action.web-agent-available {
+    position: relative;
+}
+
+.cds--header__action.web-agent-available::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #24a148;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}

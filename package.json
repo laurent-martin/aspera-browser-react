@@ -1,0 +1,48 @@
+{
+  "name": "aspera-browser-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "clobber": "rm -rf node_modules dist .vite package-lock.json",
+    "generate:api-types": "curl -s 'https://raw.githubusercontent.com/laurent-martin/aspera-api-examples/refs/heads/main/openapi/IBM%20Aspera%20Node%20API-4.4.6.yaml' -o /tmp/aspera-node-api-openapi.yaml && openapi-typescript /tmp/aspera-node-api-openapi.yaml -o src/types/asperaNodeApi.ts"
+  },
+  "dependencies": {
+    "@carbon/icons-react": "^11.77.1",
+    "@carbon/react": "^1.104.1",
+    "@ibm-aspera/sdk": "^0.20.0",
+    "@tanstack/react-query": "^5.96.2",
+    "@tanstack/react-router": "^1.168.10",
+    "axios": "^1.14.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "i18next": "^26.0.3",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-hook-form": "^7.72.1",
+    "react-i18next": "^17.0.2",
+    "zod": "^4.3.6",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/node": "^24.12.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.4.0",
+    "openapi-typescript": "^7.13.0",
+    "sass": "^1.99.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.58.0",
+    "vite": "^8.0.4"
+  }
+}

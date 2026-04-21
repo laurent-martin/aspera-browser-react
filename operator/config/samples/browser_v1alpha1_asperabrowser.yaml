@@ -1,0 +1,29 @@
+apiVersion: browser.aspera.io/v1alpha1
+kind: AsperaBrowser
+metadata:
+  name: aspera-browser-sample
+  namespace: default
+spec:
+  # Nombre de replicas
+  replicas: 2
+
+  # Image Docker à utiliser
+  image: aspera-browser:latest
+
+  # URL du serveur Aspera Node API
+  asperaNodeUrl: https://demo.asperasoft.com:9092
+
+  # Configuration Ingress
+  ingressEnabled: true
+  ingressHost: aspera-browser.example.com
+  tlsEnabled: true
+
+  # Ressources
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "200m"
+      memory: "256Mi"
+

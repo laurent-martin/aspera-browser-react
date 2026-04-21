@@ -1,0 +1,40 @@
+{
+  "panel": {
+    "title": "Transferts",
+    "running": "{{count}} en cours",
+    "noActiveTransfers": "Aucun transfert actif"
+  },
+  "status": {
+    "initiating": "Initialisation",
+    "queued": "En attente",
+    "running": "En cours",
+    "completed": "Terminé",
+    "failed": "Échoué",
+    "cancelled": "Annulé",
+    "willretry": "Nouvelle tentative",
+    "removed": "Retiré"
+  },
+  "details": {
+    "currentFile": "Fichier actuel :",
+    "numberOfFiles": "Nombre de fichiers :",
+    "error": "Erreur :",
+    "duration": "Durée :",
+    "eta": "Temps restant : {{time}}",
+    "openFolder": "Ouvrir le dossier"
+  },
+  "direction": {
+    "send": "Envoi",
+    "receive": "Réception"
+  },
+  "upload": {
+    "initiated": "Téléchargement initié pour {{count}} fichier(s)",
+    "selectFiles": "Sélectionnez les fichiers à télécharger dans la fenêtre Aspera"
+  },
+  "agent": {
+    "check": "Check agent",
+    "label": "Version agent :",
+    "available": "Agent disponible",
+    "unknown": "Version inconnue",
+    "unavailable": "Agent indisponible"
+  }
+}

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aspera-browser-config
+  labels:
+    app: aspera-browser
+data:
+  # Application configuration
+  # These values can be injected into the container if needed
+  ASPERA_NODE_URL: "https://demo.asperasoft.com:9092"
+  LOG_LEVEL: "info"
+

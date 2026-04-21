@@ -1,0 +1,32 @@
+{
+  "toolbar": {
+    "newFolder": "Nouveau dossier",
+    "search": "Rechercher..."
+  },
+  "messages": {
+    "dropFiles": "Déposez les fichiers ici pour les envoyer",
+    "loading": "Chargement...",
+    "noFiles": "Aucun fichier trouvé",
+    "emptyDirectory": "Vide"
+  },
+  "viewModes": {
+    "list": "Vue liste",
+    "cards": "Vue cartes"
+  },
+  "table": {
+    "headers": {
+      "type": "Type",
+      "name": "Nom",
+      "size": "Taille",
+      "modified": "Modifié"
+    }
+  },
+  "actions": {
+    "openFolder": "Double-cliquez pour ouvrir le dossier",
+    "preview": "Cliquez pour prévisualiser"
+  },
+  "types": {
+    "folder": "Dossier",
+    "file": "Fichier"
+  }
+}

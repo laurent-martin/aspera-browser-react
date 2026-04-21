@@ -1,0 +1,40 @@
+{
+  "panel": {
+    "title": "転送",
+    "running": "{{count}} 実行中",
+    "noActiveTransfers": "アクティブな転送はありません"
+  },
+  "status": {
+    "initiating": "初期化中",
+    "queued": "キュー中",
+    "running": "実行中",
+    "completed": "完了",
+    "failed": "失敗",
+    "cancelled": "キャンセル済み",
+    "willretry": "再試行します",
+    "removed": "削除済み"
+  },
+  "details": {
+    "currentFile": "現在のファイル：",
+    "numberOfFiles": "ファイル数：",
+    "error": "エラー：",
+    "duration": "期間：",
+    "eta": "予想時間：{{time}}",
+    "openFolder": "フォルダを開く"
+  },
+  "direction": {
+    "send": "アップロード",
+    "receive": "ダウンロード"
+  },
+  "upload": {
+    "initiated": "{{count}} ファイルのアップロードを開始しました",
+    "selectFiles": "Aspera ウィンドウでアップロードするファイルを選択してください"
+  },
+  "agent": {
+    "check": "エージェントを確認",
+    "label": "エージェントバージョン：",
+    "available": "エージェント利用可能",
+    "unknown": "不明なバージョン",
+    "unavailable": "エージェント利用不可"
+  }
+}

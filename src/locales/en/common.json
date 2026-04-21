@@ -1,0 +1,40 @@
+{
+  "app": {
+    "name": "Aspera Browser",
+    "prefix": "IBM"
+  },
+  "actions": {
+    "refresh": "Refresh",
+    "download": "Download",
+    "upload": "Upload",
+    "uploadFiles": "Upload Files",
+    "uploadFolder": "Upload Folder",
+    "delete": "Delete",
+    "pause": "Pause",
+    "resume": "Resume",
+    "remove": "Remove",
+    "clearInactive": "Clear inactive",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "labels": {
+    "settings": "Settings",
+    "accounts": "Accounts",
+    "transferActivity": "Transfer Activity",
+    "help": "Help"
+  },
+  "settings": {
+    "menu": {
+      "disconnect": "Disconnect",
+      "configureAccount": "Create Account",
+      "accounts": "Configured Accounts",
+      "editAccount": "Edit Account",
+      "deleteAccount": "Delete Account"
+    }
+  },
+  "language": {
+    "menuAriaLabel": "Select language",
+    "title": "Language",
+    "nativeName": "English"
+  }
+}

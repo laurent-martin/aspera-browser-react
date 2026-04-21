@@ -1,0 +1,25 @@
+{
+  "title": "Help",
+  "sections": {
+    "navigation": {
+      "title": "Navigation",
+      "content": "Click on a folder to access it. Use the breadcrumb to navigate back."
+    },
+    "fileSelection": {
+      "title": "File Selection",
+      "content": "Check boxes to select files. Use the header checkbox to select all."
+    },
+    "download": {
+      "title": "Download",
+      "content": "Select files and click \"Download\" to retrieve them."
+    },
+    "upload": {
+      "title": "Upload",
+      "content": "Click \"Upload\" or drag and drop files into the area."
+    },
+    "viewModes": {
+      "title": "View Modes",
+      "content": "Switch between list view and card view using the icons in the top right."
+    }
+  }
+}

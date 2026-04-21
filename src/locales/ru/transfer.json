@@ -1,0 +1,40 @@
+{
+  "panel": {
+    "title": "Передачи",
+    "running": "{{count}} выполняется",
+    "noActiveTransfers": "Нет активных передач"
+  },
+  "status": {
+    "initiating": "Инициализация",
+    "queued": "В очереди",
+    "running": "Выполняется",
+    "completed": "Завершено",
+    "failed": "Ошибка",
+    "cancelled": "Отменено",
+    "willretry": "Повторная попытка",
+    "removed": "Удалено"
+  },
+  "details": {
+    "currentFile": "Текущий файл:",
+    "numberOfFiles": "Количество файлов:",
+    "error": "Ошибка:",
+    "duration": "Длительность:",
+    "eta": "Осталось: {{time}}",
+    "openFolder": "Открыть папку"
+  },
+  "direction": {
+    "send": "Загрузить",
+    "receive": "Скачать"
+  },
+  "upload": {
+    "initiated": "Загрузка инициирована для {{count}} файл(ов)",
+    "selectFiles": "Выберите файлы для загрузки в окне Aspera"
+  },
+  "agent": {
+    "check": "Проверить агент",
+    "label": "Версия агента:",
+    "available": "Агент доступен",
+    "unknown": "Неизвестная версия",
+    "unavailable": "Агент недоступен"
+  }
+}

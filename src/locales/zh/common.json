@@ -1,0 +1,40 @@
+{
+  "app": {
+    "name": "Aspera Browser",
+    "prefix": "IBM"
+  },
+  "actions": {
+    "refresh": "刷新",
+    "download": "下载",
+    "upload": "上传",
+    "uploadFiles": "上传文件",
+    "uploadFolder": "上传文件夹",
+    "delete": "删除",
+    "pause": "暂停",
+    "resume": "恢复",
+    "remove": "移除",
+    "clearInactive": "清除非活动项",
+    "confirm": "确认",
+    "cancel": "取消"
+  },
+  "labels": {
+    "settings": "设置",
+    "accounts": "账户",
+    "transferActivity": "传输活动",
+    "help": "帮助"
+  },
+  "settings": {
+    "menu": {
+      "disconnect": "断开连接",
+      "configureAccount": "创建账户",
+      "accounts": "已配置账户",
+      "editAccount": "编辑账户",
+      "deleteAccount": "删除账户"
+    }
+  },
+  "language": {
+    "menuAriaLabel": "选择语言",
+    "title": "语言",
+    "nativeName": "中文"
+  }
+}

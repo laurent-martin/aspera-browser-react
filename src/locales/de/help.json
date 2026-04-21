@@ -1,0 +1,25 @@
+{
+  "title": "Hilfe",
+  "sections": {
+    "navigation": {
+      "title": "Navigation",
+      "content": "Klicken Sie auf einen Ordner, um darauf zuzugreifen. Verwenden Sie die Breadcrumb-Navigation, um zurückzugehen."
+    },
+    "fileSelection": {
+      "title": "Dateiauswahl",
+      "content": "Aktivieren Sie Kontrollkästchen, um Dateien auszuwählen. Verwenden Sie das Kontrollkästchen in der Kopfzeile, um alle auszuwählen."
+    },
+    "download": {
+      "title": "Herunterladen",
+      "content": "Wählen Sie Dateien aus und klicken Sie auf \"Herunterladen\", um sie abzurufen."
+    },
+    "upload": {
+      "title": "Hochladen",
+      "content": "Klicken Sie auf \"Hochladen\" oder ziehen Sie Dateien per Drag & Drop in den Bereich."
+    },
+    "viewModes": {
+      "title": "Anzeigemodi",
+      "content": "Wechseln Sie zwischen Listenansicht und Kartenansicht mit den Symbolen oben rechts."
+    }
+  }
+}
