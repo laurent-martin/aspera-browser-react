@@ -19,14 +19,13 @@ And merci IBM Bob for the vide coding.
 ## 🛠️ Tech Stack
 
 - **React 19** with TypeScript
-- **Vite 8** - Ultra-fast build tool
+- **Vite 6** - Ultra-fast build tool
 - **IBM Carbon Design System** - UI Components
 - **i18next + react-i18next** - Internationalization
 - **Zustand** - Simple and performant state management
 - **TanStack Query** - Server data management
 - **TanStack Router** - Type-safe routing
 - **React Hook Form + Zod** - Forms and validation
-- **React Dropzone** - File drag & drop
 - **Axios** - HTTP requests
 - **date-fns** - Date manipulation
 - **openapi-typescript** - Type-safe API client generation
