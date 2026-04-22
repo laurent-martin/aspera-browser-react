@@ -72,10 +72,13 @@
   border-top: 1px solid var(--border-color) !important;
 }
 
-:root[data-theme="dark"] .cds--data-table td {
+:root[data-theme="dark"] .cds--data-table td,
+:root[data-theme="dark"] .cds--data-table tbody th {
   background-color: var(--bg-primary) !important;
   color: var(--text-primary) !important;
   border-top: 1px solid var(--border-color) !important;
+  border-block-end: 1px solid var(--border-color) !important;
+  border-block-start: 1px solid var(--border-color) !important;
 }
 
 :root[data-theme="dark"] .cds--data-table tbody tr:hover td {
