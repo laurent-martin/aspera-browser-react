@@ -301,7 +301,7 @@ export class AccessKeyService extends BaseNodeApiService {
      * @param name - Name of the directory to create
      * @returns Creation result with the new directory's metadata
      */
-    async createDir(parentId: string, name: string): Promise<ExtendedFileMetadata> {
+    async createDir(parentId: string, name: string): Promise<Record<string, unknown>> {
         const response = await this.client.post<ExtendedFileMetadata>(
             `/files/${parentId}/files`,
             {
@@ -309,21 +309,21 @@ export class AccessKeyService extends BaseNodeApiService {
                 name,
             }
         );
-        return response.data;
+        return response.data as Record<string, unknown>;
     }
 
     /**
      * Delete files or directories
      * @param ids - For Access Key: array of file_ids
      */
-    async deleteFiles(ids: string[]) {
+    async deleteFiles(ids: string[]): Promise<Record<string, unknown>> {
         // For Access Key, use DELETE /files/{id} for each file
         const deletePromises = ids.map(id =>
             this.client.delete(`/files/${id}`)
         );
 
         const results = await Promise.all(deletePromises);
-        return results.map(r => r.data);
+        return { results: results.map(r => r.data) };
     }
 
     /**
@@ -343,7 +343,7 @@ export class AccessKeyService extends BaseNodeApiService {
      * Get raw file information as JSON
      * @param id - For Access Key: file_id of the file/directory
      */
-    async getFileInfo(id: string): Promise<any> {
+    async getFileInfo(id: string): Promise<Record<string, unknown>> {
         const response = await this.client.get(`/files/${id}`, {
             headers: {
                 'Accept': 'application/json',

@@ -178,7 +178,8 @@ export abstract class BaseNodeApiService implements IFileService {
     // Abstract methods that must be implemented by subclasses
     abstract setCredentials(credentials: ConnectionCredentials): void | Promise<void>;
     abstract browse(id: string): Promise<DirList>;
-    abstract createDir(parentId: string, name: string): Promise<any>;
-    abstract deleteFiles(ids: string[]): Promise<any>;
-    abstract rename(id: string, newName: string): Promise<any>;
+    abstract createDir(parentId: string, name: string): Promise<Record<string, unknown>>;
+    abstract deleteFiles(ids: string[]): Promise<Record<string, unknown>>;
+    abstract rename(id: string, newName: string): Promise<Record<string, unknown>>;
+    abstract getFileInfo(id: string): Promise<Record<string, unknown>>;
 }

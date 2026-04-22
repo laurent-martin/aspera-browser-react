@@ -118,3 +118,33 @@ export interface AppConfig {
     connectMinVersion: string;
 }
 
+// API Response types
+export interface FileInfoResponse {
+    [key: string]: unknown;
+}
+
+export interface SSHFileAttrs {
+    size?: number;
+    mtime: number;
+    isDirectory: boolean;
+}
+
+export interface SSHFile {
+    filename: string;
+    attrs: SSHFileAttrs;
+}
+
+export interface SSHFileListResponse {
+    files?: SSHFile[];
+}
+
+export interface BrowseResponseItem {
+    path: string;
+    [key: string]: unknown;
+}
+
+export interface BrowseResponse {
+    items?: BrowseResponseItem[];
+    [key: string]: unknown;
+}
+

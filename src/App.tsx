@@ -53,7 +53,7 @@ function App() {
   // Dialog states
   const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; files: FileItem[] }>({ open: false, files: [] });
   const [folderDialog, setFolderDialog] = useState(false);
-  const [fileInfoDialog, setFileInfoDialog] = useState<{ open: boolean; fileName: string; fileInfo: any }>({
+  const [fileInfoDialog, setFileInfoDialog] = useState<{ open: boolean; fileName: string; fileInfo: Record<string, unknown> | null }>({
     open: false,
     fileName: '',
     fileInfo: null

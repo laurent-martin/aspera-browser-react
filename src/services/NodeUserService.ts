@@ -1,4 +1,4 @@
-import type { DirList, ConnectionCredentials, NodeAPICredentials } from '../types';
+import type { DirList, ConnectionCredentials, NodeAPICredentials, BrowseResponseItem } from '../types';
 import { BaseNodeApiService } from './BaseNodeApiService';
 
 /**
@@ -30,7 +30,7 @@ export class NodeUserService extends BaseNodeApiService {
         // Add universal 'id' field to each item (full path for Node User)
         const data = response.data;
         if (data.items) {
-            data.items = data.items.map((item: any) => ({
+            data.items = data.items.map((item: BrowseResponseItem) => ({
                 ...item,
                 id: item.path, // Universal identifier: full path for Node User
             }));
@@ -98,7 +98,7 @@ export class NodeUserService extends BaseNodeApiService {
      * Get raw file information as JSON
      * @param id - For Node User: full path of the file/directory
      */
-    async getFileInfo(id: string): Promise<any> {
+    async getFileInfo(id: string): Promise<Record<string, unknown>> {
         const response = await this.client.post('/files/browse', {
             path: id,
         });

@@ -6,37 +6,41 @@ import { FileServiceFactory } from '../services/FileServiceFactory';
 /**
  * Validate if credentials object is valid
  */
-function isValidCredentials(credentials: any): credentials is ConnectionCredentials {
+function isValidCredentials(credentials: unknown): credentials is ConnectionCredentials {
     if (!credentials || typeof credentials !== 'object') {
         return false;
     }
 
+    const cred = credentials as Record<string, unknown>;
     const validAccessTypes = ['node-user', 'access-key', 'ssh'];
-    if (!validAccessTypes.includes(credentials.access_type)) {
+    if (!validAccessTypes.includes(cred.access_type as string)) {
         return false;
     }
 
     // Validate access_type-specific fields
-    if (credentials.access_type === 'ssh') {
-        return !!(credentials.url && credentials.username && credentials.authMethod);
+    if (cred.access_type === 'ssh') {
+        return !!(cred.url && cred.username && cred.authMethod);
     } else {
-        return !!(credentials.url && credentials.username && credentials.password !== undefined);
+        return !!(cred.url && cred.username && cred.password !== undefined);
     }
 }
 
 /**
  * Validate and clean saved accounts
  */
-function validateSavedAccounts(accounts: any[]): SavedAccount[] {
+function validateSavedAccounts(accounts: unknown[]): SavedAccount[] {
     if (!Array.isArray(accounts)) {
         return [];
     }
 
-    const validAccounts = accounts.filter(account => {
-        return account &&
-            account.id &&
-            account.name &&
-            isValidCredentials(account.credentials);
+    const validAccounts = accounts.filter((account): account is SavedAccount => {
+        if (!account || typeof account !== 'object') {
+            return false;
+        }
+        const acc = account as Record<string, unknown>;
+        return !!(acc.id &&
+            acc.name &&
+            isValidCredentials(acc.credentials));
     });
 
     return validAccounts;

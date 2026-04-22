@@ -1,4 +1,4 @@
-import type { SSHCredentials, DirList, NodeInfo, ConnectionCredentials, FileItem } from '../types';
+import type { SSHCredentials, DirList, NodeInfo, ConnectionCredentials, FileItem, SSHFileListResponse, SSHFile } from '../types';
 import type { IFileService } from './IFileService';
 import type { TransferSpec } from '@ibm-aspera/sdk';
 
@@ -132,14 +132,18 @@ export class SSHService implements IFileService {
     /**
      * Normalize SSH response to common DirList format
      */
-    private normalizeSSHFileList(data: any, path: string): DirList {
-        const items: FileItem[] = (data.files || []).map((file: any) => ({
-            basename: file.filename,
-            path: `${path}/${file.filename}`.replace(/\/+/g, '/'),
-            type: file.attrs.isDirectory ? 'directory' : 'file',
-            size: file.attrs.size || 0,
-            mtime: new Date(file.attrs.mtime * 1000).toISOString(),
-        }));
+    private normalizeSSHFileList(data: SSHFileListResponse, path: string): DirList {
+        const items: FileItem[] = (data.files || []).map((file: SSHFile) => {
+            const itemPath = `${path}/${file.filename}`.replace(/\/+/g, '/');
+            return {
+                basename: file.filename,
+                path: itemPath,
+                id: itemPath, // Universal identifier: full path for SSH
+                type: file.attrs.isDirectory ? 'directory' : 'file',
+                size: file.attrs.size || 0,
+                mtime: new Date(file.attrs.mtime * 1000).toISOString(),
+            };
+        });
 
         return {
             self: {
@@ -169,13 +173,13 @@ export class SSHService implements IFileService {
             })),
             target_rate_kbps: 100000, // 100 Mbps by default
             rate_policy: 'fair',
-            cipher: 'aes-128' as any,
+            cipher: 'aes128',
             resume_policy: 'sparse_checksum',
         };
 
         // Add authentication based on method
         if (this.credentials.authMethod === 'password') {
-            (transferSpec as any).remote_password = this.credentials.password;
+            (transferSpec as Record<string, unknown>).remote_password = this.credentials.password;
         } else {
             // For private key authentication, we would need to handle this differently
             // This is a placeholder - actual implementation would depend on how the SDK handles SSH keys
@@ -206,13 +210,13 @@ export class SSHService implements IFileService {
             destination_root: destinationPath,
             target_rate_kbps: 100000, // 100 Mbps by default
             rate_policy: 'fair',
-            cipher: 'aes-128' as any,
+            cipher: 'aes128',
             resume_policy: 'sparse_checksum',
         };
 
         // Add authentication based on method
         if (this.credentials.authMethod === 'password') {
-            (transferSpec as any).remote_password = this.credentials.password;
+            (transferSpec as Record<string, unknown>).remote_password = this.credentials.password;
         } else {
             // For private key authentication, we would need to handle this differently
             // This is a placeholder - actual implementation would depend on how the SDK handles SSH keys
@@ -363,7 +367,7 @@ export class SSHService implements IFileService {
      * Get raw file information as JSON
      * @param id - For SSH: full path of the file/directory
      */
-    async getFileInfo(id: string): Promise<any> {
+    async getFileInfo(id: string): Promise<Record<string, unknown>> {
         if (!this.credentials) {
             throw new Error('Credentials not set');
         }

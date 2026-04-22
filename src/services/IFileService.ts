@@ -42,39 +42,39 @@ export interface IFileService {
      * Prepare file download
      * @deprecated Use buildDownloadTransferSpec instead
      */
-    downloadSetup(paths: Array<{ source: string }>): Promise<any>;
+    downloadSetup(paths: Array<{ source: string }>): Promise<Record<string, unknown>>;
 
     /**
      * Prepare file upload
      * @deprecated Use buildUploadTransferSpec instead
      */
-    uploadSetup(paths: Array<{ source: string }>, destinationPath: string): Promise<any>;
+    uploadSetup(paths: Array<{ source: string }>, destinationPath: string): Promise<Record<string, unknown>>;
 
     /**
      * Create a new directory
      * @param parentId - Universal identifier: full path for Node User, file_id for Access Key
      * @param name - Name of the directory to create
      */
-    createDir(parentId: string, name: string): Promise<any>;
+    createDir(parentId: string, name: string): Promise<Record<string, unknown>>;
 
     /**
      * Delete files or directories
      * @param ids - Array of universal identifiers (paths for Node User, file_ids for Access Key)
      */
-    deleteFiles(ids: string[]): Promise<any>;
+    deleteFiles(ids: string[]): Promise<Record<string, unknown>>;
 
     /**
      * Rename a file or directory
      * @param id - Universal identifier of the file/directory to rename
      * @param newName - New name for the file/directory
      */
-    rename(id: string, newName: string): Promise<any>;
+    rename(id: string, newName: string): Promise<Record<string, unknown>>;
 
     /**
      * Get raw file information as JSON
      * @param id - Universal identifier of the file/directory
      * @returns Raw JSON information from the API
      */
-    getFileInfo(id: string): Promise<any>;
+    getFileInfo(id: string): Promise<Record<string, unknown>>;
 }
 

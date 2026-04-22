@@ -5,7 +5,7 @@ import './FileInfoDialog.css';
 interface FileInfoDialogProps {
   open: boolean;
   fileName: string;
-  fileInfo: any;
+  fileInfo: Record<string, unknown> | null;
   onClose: () => void;
 }
 
