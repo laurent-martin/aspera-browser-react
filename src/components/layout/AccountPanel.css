@@ -134,6 +134,13 @@
     white-space: nowrap;
 }
 
+.account-type {
+    font-size: 0.6875rem;
+    color: #8d8d8d;
+    font-weight: 500;
+    margin-top: 0.125rem;
+}
+
 .account-panel-divider {
     height: 1px;
     background-color: var(--border-color);

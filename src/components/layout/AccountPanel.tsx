@@ -13,8 +13,17 @@ interface AccountPanelProps {
 }
 
 export function AccountPanel({ onDisconnect, onConfigureAccount, onSelectAccount, onDeleteAccount, onEditAccount }: AccountPanelProps) {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', 'connection']);
   const { savedAccounts, currentAccountId } = useAuthStore();
+
+  const getAccessTypeLabel = (accessType: string) => {
+    const accessTypeKey = accessType === 'node-user'
+      ? 'access_type_node_gen3'
+      : accessType === 'access-key'
+      ? 'access_type_node_gen4'
+      : 'access_type_ssh';
+    return t(`connection:settings.${accessTypeKey}`);
+  };
 
   return (
     <div className="account-panel">
@@ -57,6 +66,9 @@ export function AccountPanel({ onDisconnect, onConfigureAccount, onSelectAccount
                         ? (account.credentials as SSHCredentials).url
                         : (account.credentials as NodeAPICredentials).url
                       }
+                    </div>
+                    <div className="account-type">
+                      {getAccessTypeLabel(account.credentials.access_type)}
                     </div>
                   </div>
                 </button>

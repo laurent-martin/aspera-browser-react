@@ -127,7 +127,7 @@ function App() {
   const handleConfigureAccount = () => {
     // Initialize with empty credentials for new account
     setFormData({
-      access_type: 'node-user',
+      access_type: 'access-key',
       url: '',
       username: '',
       password: '',
