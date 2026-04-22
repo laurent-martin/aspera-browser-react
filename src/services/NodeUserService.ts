@@ -93,5 +93,16 @@ export class NodeUserService extends BaseNodeApiService {
         });
         return response.data;
     }
+
+    /**
+     * Get raw file information as JSON
+     * @param id - For Node User: full path of the file/directory
+     */
+    async getFileInfo(id: string): Promise<any> {
+        const response = await this.client.post('/files/browse', {
+            path: id,
+        });
+        return response.data;
+    }
 }
 

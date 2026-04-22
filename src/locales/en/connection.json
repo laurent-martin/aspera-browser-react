@@ -78,6 +78,7 @@
     "newFolderPlaceholder": "Enter folder name",
     "folderCreated": "Folder \"{{name}}\" created successfully",
     "folderCreateFailed": "Failed to create folder",
+    "fileInfoFailed": "Failed to get file information",
     "accountUpdated": "Account updated",
     "accountUpdatedSubtitle": "Account \"{{name}}\" has been updated successfully",
     "disconnected": "Disconnected",

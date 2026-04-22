@@ -18,6 +18,7 @@ import { EmptyDirectory } from '../common/EmptyDirectory';
 import { FileTypeIcon } from './FileTypeIcon';
 import { FileThumbnail } from './FileThumbnail';
 import { MediaViewer } from './MediaViewer';
+import { FileActionsMenu } from './FileActionsMenu';
 
 interface FileListViewProps {
   files: FileItem[];
@@ -25,6 +26,10 @@ interface FileListViewProps {
   onFileSelect: (file: FileItem) => void;
   onFileOpen: (file: FileItem) => void;
   onSelectAll: (selected: boolean) => void;
+  onDownload: (file: FileItem) => void;
+  onDelete: (file: FileItem) => void;
+  onRename: (file: FileItem) => void;
+  onInfo: (file: FileItem) => void;
 }
 
 export function FileListView({
@@ -33,6 +38,10 @@ export function FileListView({
   onFileSelect,
   onFileOpen,
   onSelectAll,
+  onDownload,
+  onDelete,
+  onRename,
+  onInfo,
 }: FileListViewProps) {
   const { t } = useTranslation('fileBrowser');
   const { viewerFile, isViewerOpen, handleThumbnailClick, handleCloseViewer } = useMediaViewer();
@@ -115,6 +124,7 @@ export function FileListView({
               <TableHeader className="file-list-view__header file-list-view__header--modified">
                 {t('table.headers.modified')}
               </TableHeader>
+              <TableHeader className="file-list-view__header file-list-view__header--actions" />
             </TableRow>
           </TableHead>
           <TableBody>
@@ -203,6 +213,15 @@ export function FileListView({
                     title={`${t('table.headers.modified')}: ${formatDate(file.mtime)}`}
                   >
                     {formatDate(file.mtime)}
+                  </TableCell>
+                  <TableCell className="file-list-view__cell file-list-view__cell--actions">
+                    <FileActionsMenu
+                      file={file}
+                      onDownload={onDownload}
+                      onInfo={onInfo}
+                      onRename={onRename}
+                      onDelete={onDelete}
+                    />
                   </TableCell>
                 </TableRow>
               );

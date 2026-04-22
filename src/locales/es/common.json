@@ -15,7 +15,13 @@
     "remove": "Quitar",
     "clearInactive": "Limpiar inactivos",
     "confirm": "Confirmar",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "info": "Info",
+    "fileInfo": "Información del archivo",
+    "rename": "Renombrar",
+    "copy": "Copiar al portapapeles",
+    "copied": "¡Copiado!",
+    "moreActions": "Más acciones"
   },
   "labels": {
     "settings": "Configuración",

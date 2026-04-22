@@ -69,5 +69,12 @@ export interface IFileService {
      * @param newName - New name for the file/directory
      */
     rename(id: string, newName: string): Promise<any>;
+
+    /**
+     * Get raw file information as JSON
+     * @param id - Universal identifier of the file/directory
+     * @returns Raw JSON information from the API
+     */
+    getFileInfo(id: string): Promise<any>;
 }
 

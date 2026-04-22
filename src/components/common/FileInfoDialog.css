@@ -1,0 +1,24 @@
+.file-info-dialog {
+    padding: 1rem 0;
+}
+
+.file-info-title {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--cds-text-primary);
+}
+
+.file-info-content {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.file-info-content .cds--snippet--multi {
+    max-width: 100%;
+}
+
+.file-info-content .cds--snippet-container {
+    max-height: 55vh;
+}
+
+/* Made with Bob */

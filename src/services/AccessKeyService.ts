@@ -338,5 +338,19 @@ export class AccessKeyService extends BaseNodeApiService {
         });
         return response.data;
     }
+
+    /**
+     * Get raw file information as JSON
+     * @param id - For Access Key: file_id of the file/directory
+     */
+    async getFileInfo(id: string): Promise<any> {
+        const response = await this.client.get(`/files/${id}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Accept-Version': '4.0',
+            },
+        });
+        return response.data;
+    }
 }
 

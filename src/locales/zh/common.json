@@ -15,7 +15,13 @@
     "remove": "移除",
     "clearInactive": "清除非活动项",
     "confirm": "确认",
-    "cancel": "取消"
+    "cancel": "取消",
+    "info": "信息",
+    "fileInfo": "文件信息",
+    "rename": "重命名",
+    "copy": "复制到剪贴板",
+    "copied": "已复制！",
+    "moreActions": "更多操作"
   },
   "labels": {
     "settings": "设置",

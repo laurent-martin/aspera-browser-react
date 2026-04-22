@@ -13,7 +13,7 @@ export const useTransferStore = create<TransferState>((set) => ({
     transfers: [],
     addTransfer: (transfer) =>
         set((state) => ({
-            transfers: [...state.transfers, transfer],
+            transfers: [transfer, ...state.transfers],
         })),
     updateTransfer: (uuid, updatedTransfer) =>
         set((state) => ({

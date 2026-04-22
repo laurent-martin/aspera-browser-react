@@ -15,7 +15,13 @@
     "remove": "Remover",
     "clearInactive": "Limpar inativos",
     "confirm": "Confirmar",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "info": "Info",
+    "fileInfo": "Informações do arquivo",
+    "rename": "Renomear",
+    "copy": "Copiar para área de transferência",
+    "copied": "Copiado!",
+    "moreActions": "Mais ações"
   },
   "labels": {
     "settings": "Configurações",

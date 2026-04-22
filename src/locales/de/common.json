@@ -15,7 +15,13 @@
     "remove": "Entfernen",
     "clearInactive": "Inaktive löschen",
     "confirm": "Bestätigen",
-    "cancel": "Abbrechen"
+    "cancel": "Abbrechen",
+    "info": "Info",
+    "fileInfo": "Dateiinformationen",
+    "rename": "Umbenennen",
+    "copy": "In Zwischenablage kopieren",
+    "copied": "Kopiert!",
+    "moreActions": "Weitere Aktionen"
   },
   "labels": {
     "settings": "Einstellungen",

@@ -15,7 +15,13 @@
     "remove": "Retirer",
     "clearInactive": "Effacer inactifs",
     "confirm": "Confirmer",
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "info": "Info",
+    "fileInfo": "Informations du fichier",
+    "rename": "Renommer",
+    "copy": "Copier dans le presse-papiers",
+    "copied": "Copié !",
+    "moreActions": "Plus d'actions"
   },
   "labels": {
     "settings": "Paramètres",

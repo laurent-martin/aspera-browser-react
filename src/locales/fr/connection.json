@@ -78,6 +78,7 @@
     "newFolderPlaceholder": "Entrez le nom du dossier",
     "folderCreated": "Dossier \"{{name}}\" créé avec succès",
     "folderCreateFailed": "Échec de la création du dossier",
+    "fileInfoFailed": "Échec de la récupération des informations du fichier",
     "accountUpdated": "Compte mis à jour",
     "accountUpdatedSubtitle": "Le compte \"{{name}}\" a été mis à jour avec succès",
     "disconnected": "Déconnecté",

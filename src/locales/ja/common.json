@@ -15,7 +15,13 @@
     "remove": "削除",
     "clearInactive": "非アクティブをクリア",
     "confirm": "確認",
-    "cancel": "キャンセル"
+    "cancel": "キャンセル",
+    "info": "情報",
+    "fileInfo": "ファイル情報",
+    "rename": "名前を変更",
+    "copy": "クリップボードにコピー",
+    "copied": "コピーしました！",
+    "moreActions": "その他のアクション"
   },
   "labels": {
     "settings": "設定",

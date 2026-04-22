@@ -333,6 +333,21 @@
     padding-right: 1rem;
 }
 
+.file-list-view__header--actions,
+.file-list-view__cell--actions {
+    width: 3rem;
+    min-width: 3rem;
+    max-width: 3rem;
+    text-align: center;
+    padding: 0 0.5rem;
+}
+
+.file-list-view__cell--actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
 .file-list-view__cell--name-clickable {
     color: #0f62fe;
     font-weight: 500;

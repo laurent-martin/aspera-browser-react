@@ -10,6 +10,25 @@
     position: relative;
 }
 
+.file-card-actions {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.file-card-wrapper:hover .file-card-actions {
+    opacity: 1;
+}
+
+.file-card-actions-menu {
+    background-color: var(--bg-primary);
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
 .file-card {
     height: 100%;
     display: flex;

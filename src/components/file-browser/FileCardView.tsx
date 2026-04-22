@@ -6,6 +6,7 @@ import { useMediaViewer } from '../../hooks/useMediaViewer';
 import { EmptyDirectory } from '../common/EmptyDirectory';
 import { FileItemVisual } from './FileItemVisual';
 import { MediaViewer } from './MediaViewer';
+import { FileActionsMenu } from './FileActionsMenu';
 import './FileCardView.css';
 
 interface FileCardViewProps {
@@ -13,6 +14,10 @@ interface FileCardViewProps {
   selectedFiles: FileItem[];
   onFileSelect: (file: FileItem) => void;
   onFileOpen: (file: FileItem) => void;
+  onDownload: (file: FileItem) => void;
+  onDelete: (file: FileItem) => void;
+  onRename: (file: FileItem) => void;
+  onInfo: (file: FileItem) => void;
 }
 
 export function FileCardView({
@@ -20,6 +25,10 @@ export function FileCardView({
   selectedFiles,
   onFileSelect,
   onFileOpen,
+  onDownload,
+  onDelete,
+  onRename,
+  onInfo,
 }: FileCardViewProps) {
   const { viewerFile, isViewerOpen, handleThumbnailClick, handleCloseViewer } = useMediaViewer();
   
@@ -46,6 +55,16 @@ export function FileCardView({
               }
             }}
           >
+            <div className="file-card-actions">
+              <FileActionsMenu
+                file={file}
+                onDownload={onDownload}
+                onInfo={onInfo}
+                onRename={onRename}
+                onDelete={onDelete}
+                className="file-card-actions-menu"
+              />
+            </div>
             <div
               className="file-card-icon"
               onClick={(e) => {

@@ -8,13 +8,14 @@ import { FileBrowser } from './components/file-browser/FileBrowser';
 import { NotificationContainer } from './components/common/NotificationContainer';
 import { ConfirmDialog } from './components/common/ConfirmDialog';
 import { PromptDialog } from './components/common/PromptDialog';
+import { FileInfoDialog } from './components/common/FileInfoDialog';
 import { useAuthStore } from './stores/useAuthStore';
 import { useFileStore } from './stores/useFileStore';
 import { useNotificationStore } from './stores/useNotificationStore';
 import { useTransferStore } from './stores/useTransferStore';
 import { FileServiceFactory } from './services/FileServiceFactory';
 import { validateCredentials, hasAllMandatoryFields } from './utils/validation';
-import type { ConnectionAccessType, NodeAPICredentials, SSHCredentials, ConnectionCredentials } from './types';
+import type { ConnectionAccessType, NodeAPICredentials, SSHCredentials, ConnectionCredentials, FileItem } from './types';
 import './App.css';
 
 const queryClient = new QueryClient();
@@ -52,6 +53,11 @@ function App() {
   // Dialog states
   const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; files: Array<{ id: string }> }>({ open: false, files: [] });
   const [folderDialog, setFolderDialog] = useState(false);
+  const [fileInfoDialog, setFileInfoDialog] = useState<{ open: boolean; fileName: string; fileInfo: any }>({
+    open: false,
+    fileName: '',
+    fileInfo: null
+  });
 
   const handleSaveAccount = async () => {
     setIsLoading(true);
@@ -570,6 +576,32 @@ function App() {
     }
   };
 
+  const handleInfoRequest = async (file: FileItem) => {
+    setIsLoading(true);
+    try {
+      const { credentials } = useAuthStore.getState();
+      const fileService = await FileServiceFactory.getService(credentials);
+      
+      // Use file.id which is the universal identifier
+      const fileInfo = await fileService.getFileInfo(file.id);
+      
+      setFileInfoDialog({
+        open: true,
+        fileName: file.basename,
+        fileInfo,
+      });
+    } catch (error) {
+      console.error('Get file info failed:', error);
+      addNotification({
+        type: 'error',
+        title: t('messages.fileInfoFailed'),
+        subtitle: error instanceof Error ? error.message : String(error),
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Auto-reconnect on page load if user was previously connected
   useEffect(() => {
     let cancelled = false;
@@ -838,6 +870,7 @@ function App() {
             onUpload={handleUpload}
             onDelete={handleDeleteRequest}
             onCreateFolder={handleCreateFolderRequest}
+            onInfo={handleInfoRequest}
           />
         ) : (
           <div className="welcome-screen">
@@ -1063,6 +1096,13 @@ function App() {
           placeholder={t('messages.newFolderPlaceholder')}
           onConfirm={handleCreateFolderConfirm}
           onCancel={() => setFolderDialog(false)}
+        />
+
+        <FileInfoDialog
+          open={fileInfoDialog.open}
+          fileName={fileInfoDialog.fileName}
+          fileInfo={fileInfoDialog.fileInfo}
+          onClose={() => setFileInfoDialog({ open: false, fileName: '', fileInfo: null })}
         />
       </AppLayout>
     </QueryClientProvider>

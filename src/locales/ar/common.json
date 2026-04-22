@@ -15,7 +15,13 @@
     "remove": "إزالة",
     "clearInactive": "مسح غير النشط",
     "confirm": "تأكيد",
-    "cancel": "إلغاء"
+    "cancel": "إلغاء",
+    "info": "معلومات",
+    "fileInfo": "معلومات الملف",
+    "rename": "إعادة تسمية",
+    "copy": "نسخ إلى الحافظة",
+    "copied": "تم النسخ!",
+    "moreActions": "المزيد من الإجراءات"
   },
   "labels": {
     "settings": "الإعدادات",

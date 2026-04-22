@@ -15,7 +15,13 @@
     "remove": "Remove",
     "clearInactive": "Clear inactive",
     "confirm": "Confirm",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "info": "Info",
+    "fileInfo": "File Information",
+    "rename": "Rename",
+    "copy": "Copy to clipboard",
+    "copied": "Copied!",
+    "moreActions": "More actions"
   },
   "labels": {
     "settings": "Settings",

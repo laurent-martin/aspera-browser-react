@@ -28,6 +28,8 @@ interface FileBrowserProps {
   isDropTargetActive?: boolean;
   onDelete: () => void;
   onCreateFolder: () => void;
+  onRename?: (file: FileItem) => void;
+  onInfo?: (file: FileItem) => void;
 }
 
 export function FileBrowser({
@@ -38,6 +40,8 @@ export function FileBrowser({
   onUpload,
   onDelete,
   onCreateFolder,
+  onRename,
+  onInfo,
   isDropTargetActive = false,
 }: FileBrowserProps) {
   const { t } = useTranslation(['common', 'fileBrowser']);
@@ -100,6 +104,28 @@ export function FileBrowser({
       setSelectedFiles(files);
     } else {
       clearSelection();
+    }
+  };
+
+  const handleDownloadFile = (file: FileItem) => {
+    setSelectedFiles([file]);
+    onDownload();
+  };
+
+  const handleDeleteFile = (file: FileItem) => {
+    setSelectedFiles([file]);
+    onDelete();
+  };
+
+  const handleRenameFile = (file: FileItem) => {
+    if (onRename) {
+      onRename(file);
+    }
+  };
+
+  const handleInfoFile = (file: FileItem) => {
+    if (onInfo) {
+      onInfo(file);
     }
   };
 
@@ -204,6 +230,10 @@ export function FileBrowser({
               onFileSelect={toggleFileSelection}
               onFileOpen={handleFileOpen}
               onSelectAll={handleSelectAll}
+              onDownload={handleDownloadFile}
+              onDelete={handleDeleteFile}
+              onRename={handleRenameFile}
+              onInfo={handleInfoFile}
             />
           ) : (
             <FileCardView
@@ -211,6 +241,10 @@ export function FileBrowser({
               selectedFiles={selectedFiles}
               onFileSelect={toggleFileSelection}
               onFileOpen={handleFileOpen}
+              onDownload={handleDownloadFile}
+              onDelete={handleDeleteFile}
+              onRename={handleRenameFile}
+              onInfo={handleInfoFile}
             />
           )}
       </div>

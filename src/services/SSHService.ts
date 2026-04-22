@@ -358,5 +358,36 @@ export class SSHService implements IFileService {
 
         return await response.json();
     }
+
+    /**
+     * Get raw file information as JSON
+     * @param id - For SSH: full path of the file/directory
+     */
+    async getFileInfo(id: string): Promise<any> {
+        if (!this.credentials) {
+            throw new Error('Credentials not set');
+        }
+
+        const response = await fetch(`${this.backendUrl}/stat`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                host: this.host,
+                port: this.port,
+                username: this.credentials.username,
+                authMethod: this.credentials.authMethod,
+                ...this.getAuthPayload(),
+                path: id,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Get file info failed: ${response.statusText}`);
+        }
+
+        return await response.json();
+    }
 }
 
