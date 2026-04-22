@@ -12,7 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import type { FileItem } from '../../types';
 import { formatFileSize, formatDate } from '../../utils/formatters';
-import { isPreviewableFile, isOpenableFile } from '../../utils/fileHelpers';
+import { hasThumbnail, hasVideoPreview, isOpenableFile } from '../../utils/fileHelpers';
 import { useMediaViewer } from '../../hooks/useMediaViewer';
 import { EmptyDirectory } from '../common/EmptyDirectory';
 import { FileTypeIcon } from './FileTypeIcon';
@@ -141,17 +141,29 @@ export function FileListView({
                     className="file-list-view__cell file-list-view__cell--icon"
                     title={file.type === 'directory' ? t('types.folder') : t('types.file')}
                   >
-                    <FileTypeIcon file={file} size={40} />
+                    {hasThumbnail(file) || hasVideoPreview(file) ? (
+                      <button
+                        type="button"
+                        className="file-list-view__thumbnail-button file-list-view__thumbnail-button--previewable"
+                        onClick={(e) => handleThumbnailClick(file, e)}
+                        title={t('actions.preview')}
+                        aria-label={t('actions.preview')}
+                      >
+                        <FileTypeIcon file={file} size={40} />
+                      </button>
+                    ) : (
+                      <FileTypeIcon file={file} size={40} />
+                    )}
                   </TableCell>
                   <TableCell className="file-list-view__cell file-list-view__cell--thumbnail">
                     <button
                       type="button"
-                      className={isPreviewableFile(file)
+                      className={hasThumbnail(file) || hasVideoPreview(file)
                         ? 'file-list-view__thumbnail-button file-list-view__thumbnail-button--previewable'
                         : 'file-list-view__thumbnail-button'}
                       onClick={(e) => handleThumbnailClick(file, e)}
-                      title={isPreviewableFile(file) ? t('actions.preview') : ''}
-                      aria-label={isPreviewableFile(file) ? t('actions.preview') : undefined}
+                      title={hasThumbnail(file) || hasVideoPreview(file) ? t('actions.preview') : ''}
+                      aria-label={hasThumbnail(file) || hasVideoPreview(file) ? t('actions.preview') : undefined}
                     >
                       <FileThumbnail
                         file={file}

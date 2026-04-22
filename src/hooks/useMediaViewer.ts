@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { FileItem } from '../types';
-import { isPreviewableFile } from '../utils/fileHelpers';
+import { hasThumbnail, hasVideoPreview } from '../utils/fileHelpers';
 
 /**
  * Custom hook to manage MediaViewer state and handlers
@@ -11,7 +11,7 @@ export function useMediaViewer() {
 
     const handleThumbnailClick = (file: FileItem, e: React.MouseEvent) => {
         e.stopPropagation();
-        if (isPreviewableFile(file)) {
+        if (hasThumbnail(file) || hasVideoPreview(file)) {
             setViewerFile(file);
             setIsViewerOpen(true);
         }

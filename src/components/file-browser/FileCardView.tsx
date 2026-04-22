@@ -1,7 +1,7 @@
 import { ClickableTile } from '@carbon/react';
 import type { FileItem } from '../../types';
 import { formatFileSize, formatDate } from '../../utils/formatters';
-import { isPreviewableFile, isOpenableFile } from '../../utils/fileHelpers';
+import { hasThumbnail, hasVideoPreview, isOpenableFile } from '../../utils/fileHelpers';
 import { useMediaViewer } from '../../hooks/useMediaViewer';
 import { EmptyDirectory } from '../common/EmptyDirectory';
 import { FileItemVisual } from './FileItemVisual';
@@ -49,7 +49,7 @@ export function FileCardView({
             <div
               className="file-card-icon"
               onClick={(e) => {
-                if (isPreviewableFile(file)) {
+                if (hasThumbnail(file) || hasVideoPreview(file)) {
                   handleThumbnailClick(file, e);
                 }
               }}
