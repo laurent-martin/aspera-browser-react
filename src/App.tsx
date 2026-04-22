@@ -51,7 +51,7 @@ function App() {
   const isFormValid = validation.valid && hasAllMandatoryFields(formData);
   
   // Dialog states
-  const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; files: Array<{ id: string }> }>({ open: false, files: [] });
+  const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; files: FileItem[] }>({ open: false, files: [] });
   const [folderDialog, setFolderDialog] = useState(false);
   const [fileInfoDialog, setFileInfoDialog] = useState<{ open: boolean; fileName: string; fileInfo: any }>({
     open: false,
@@ -1087,6 +1087,7 @@ function App() {
           onConfirm={handleDeleteConfirm}
           onCancel={() => setDeleteDialog({ open: false, files: [] })}
           danger
+          files={deleteDialog.files}
         />
 
         <PromptDialog
