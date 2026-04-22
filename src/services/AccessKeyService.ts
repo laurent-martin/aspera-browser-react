@@ -111,6 +111,7 @@ export class AccessKeyService extends BaseNodeApiService {
                 {
                     headers: {
                         'Accept': 'application/json',
+                        'Accept-Version': '4.0',
                     },
                 }
             );
