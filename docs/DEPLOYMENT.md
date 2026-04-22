@@ -77,6 +77,23 @@ docker rm aspera-browser
 
 ## 🐙 Docker Compose Deployment
 
+### Important: Podman Rootless Configuration
+
+If using **Podman** as a non-root user, enable `linger` to prevent containers from stopping when you log out of SSH:
+
+```bash
+# Enable linger for your user
+sudo loginctl enable-linger $USER
+
+# Verify it's enabled
+loginctl show-user $USER | grep Linger
+# Should show: Linger=yes
+```
+
+Without linger enabled, Podman rootless containers will stop when your user session ends (SSH logout).
+
+### Starting the Application
+
 ```bash
 # Start the application
 docker-compose up -d
@@ -89,6 +106,23 @@ docker-compose down
 
 # Rebuild and restart
 docker-compose up -d --build
+```
+
+### Checking Container Status
+
+```bash
+# View running containers
+docker ps
+
+# View logs (real-time)
+docker logs -f aspera-browser
+
+# View logs (last 100 lines)
+docker logs --tail=100 aspera-browser
+
+# Check if container persists after logout
+# Log out and back in, then check:
+docker ps -a --filter "name=aspera-browser"
 ```
 
 ## ☸️ Kubernetes Deployment

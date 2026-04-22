@@ -1,5 +1,10 @@
 version: '3.8'
 
+# IMPORTANT: When using Podman rootless (non-root user), enable linger to persist
+# containers after SSH logout:
+#   sudo loginctl enable-linger $USER
+# Without this, containers will stop when the user session ends.
+
 services:
   aspera-browser:
     build:
