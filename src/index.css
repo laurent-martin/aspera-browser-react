@@ -70,20 +70,17 @@
 }
 
 :root[data-theme="dark"] .cds--header__name,
-:root[data-theme="dark"] .cds--header__name--prefix {
-  color: var(--header-text) !important;
-}
-
+:root[data-theme="dark"] .cds--header__name--prefix,
 :root[data-theme="dark"] .cds--header__action {
   color: var(--header-text) !important;
 }
 
-:root[data-theme="dark"] .cds--header__action:hover {
+:root[data-theme="dark"] .cds--header__action:hover,
+:root[data-theme="dark"] .cds--header__action--active {
   background-color: var(--bg-tertiary) !important;
 }
 
 :root[data-theme="dark"] .cds--header__action--active {
-  background-color: var(--bg-tertiary) !important;
   border-left: 3px solid var(--focus-color);
 }
 

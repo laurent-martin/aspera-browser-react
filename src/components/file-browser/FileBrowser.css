@@ -175,21 +175,14 @@
 
 .toolbar-view-switcher .cds--content-switcher-btn:focus,
 .toolbar-view-switcher .cds--content-switcher-btn:focus-visible,
-.toolbar-view-switcher .cds--content-switcher-btn:active,
-.toolbar-view-switcher .cds--content-switcher-btn.cds--content-switcher--selected:focus,
-.toolbar-view-switcher .cds--content-switcher-btn[aria-selected="true"]:focus,
-.toolbar-view-switcher .cds--content-switcher-btn[aria-selected="true"]:focus-visible {
+.toolbar-view-switcher .cds--content-switcher-btn:active {
     outline: none !important;
     box-shadow: none !important;
     border-color: transparent !important;
 }
 
 .toolbar-view-switcher .cds--content-switcher-btn::before,
-.toolbar-view-switcher .cds--content-switcher-btn::after,
-.toolbar-view-switcher .cds--content-switcher-btn:focus::before,
-.toolbar-view-switcher .cds--content-switcher-btn:focus-visible::before,
-.toolbar-view-switcher .cds--content-switcher-btn[aria-selected="true"]::before,
-.toolbar-view-switcher .cds--content-switcher-btn[aria-selected="true"]::after {
+.toolbar-view-switcher .cds--content-switcher-btn::after {
     box-shadow: none !important;
     outline: none !important;
     border: none !important;
@@ -239,17 +232,6 @@
     height: 400px;
 }
 
-.empty-directory {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    min-height: 400px;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--text-tertiary);
-    text-align: center;
-}
 
 .file-list-view {
     width: 100%;

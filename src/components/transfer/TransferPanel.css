@@ -20,15 +20,14 @@
     font-size: 1.125rem;
     font-weight: 600;
     color: var(--text-primary);
+}
 
-    .transfer-agent-status {
-        padding: 0.75rem 1rem;
-        background-color: var(--bg-secondary);
-        border-bottom: 1px solid var(--border-color);
-        font-size: 0.875rem;
-        color: var(--text-secondary);
-    }
-
+.transfer-agent-status {
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
 }
 
 .transfer-list {
