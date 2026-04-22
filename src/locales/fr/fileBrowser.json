@@ -17,6 +17,7 @@
     "headers": {
       "type": "Type",
       "name": "Nom",
+      "files": "Fichiers",
       "size": "Taille",
       "modified": "Modifié"
     }

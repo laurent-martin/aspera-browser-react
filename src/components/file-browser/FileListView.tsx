@@ -106,6 +106,9 @@ export function FileListView({
               <TableHeader className="file-list-view__header file-list-view__header--name">
                 {t('table.headers.name')}
               </TableHeader>
+              <TableHeader className="file-list-view__header file-list-view__header--files">
+                {t('table.headers.files')}
+              </TableHeader>
               <TableHeader className="file-list-view__header file-list-view__header--size">
                 {t('table.headers.size')}
               </TableHeader>
@@ -172,10 +175,16 @@ export function FileListView({
                     {file.basename}
                   </TableCell>
                   <TableCell
-                    className="file-list-view__cell file-list-view__cell--size"
-                    title={file.type === 'file' ? `${t('table.headers.size')}: ${formatFileSize(file.size)}` : ''}
+                    className="file-list-view__cell file-list-view__cell--files"
+                    title={file.type === 'directory' && file.recursive_file_count !== undefined ? `${t('table.headers.files')}: ${file.recursive_file_count}` : ''}
                   >
-                    {file.type === 'file' ? formatFileSize(file.size) : '—'}
+                    {file.type === 'directory' && file.recursive_file_count !== undefined && file.recursive_file_count > 0 ? file.recursive_file_count : '—'}
+                  </TableCell>
+                  <TableCell
+                    className="file-list-view__cell file-list-view__cell--size"
+                    title={file.type !== 'symbolic_link' ? `${t('table.headers.size')}: ${formatFileSize(file.size)}` : ''}
+                  >
+                    {file.type !== 'symbolic_link' ? formatFileSize(file.size) : '—'}
                   </TableCell>
                   <TableCell
                     className="file-list-view__cell file-list-view__cell--modified"

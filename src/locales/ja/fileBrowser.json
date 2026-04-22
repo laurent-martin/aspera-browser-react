@@ -17,6 +17,7 @@
     "headers": {
       "type": "タイプ",
       "name": "名前",
+      "files": "ファイル数",
       "size": "サイズ",
       "modified": "更新日時"
     }

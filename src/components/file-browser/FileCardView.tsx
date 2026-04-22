@@ -65,7 +65,7 @@ export function FileCardView({
               {file.basename}
             </div>
             <div className="file-card-details">
-              {file.type === 'file' && (
+              {file.type !== 'symbolic_link' && (
                 <div className="file-card-size">{formatFileSize(file.size)}</div>
               )}
               <div className="file-card-date">{formatDate(file.mtime)}</div>

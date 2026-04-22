@@ -275,6 +275,15 @@
     flex: 1;
 }
 
+.file-list-view__header--files,
+.file-list-view__cell--files {
+    width: 5rem;
+    min-width: 5rem;
+    max-width: 5rem;
+    text-align: right;
+    padding-right: 1rem;
+}
+
 .file-list-view__header--size,
 .file-list-view__cell--size {
     width: 8rem;

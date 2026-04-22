@@ -24,6 +24,8 @@ interface ExtendedFileMetadata {
     };
     target_id?: string;
     target_node_id?: string;
+    recursive_size?: number;
+    recursive_file_count?: number;
 }
 
 /**
@@ -132,7 +134,8 @@ export class AccessKeyService extends BaseNodeApiService {
                 type: item.type === 'folder' ? 'directory' as const :
                     item.type === 'link' ? 'symbolic_link' as const :
                         'file' as const,
-                size: item.size || 0,
+                // For folders, use recursive_size if available, otherwise fall back to size
+                size: item.type === 'folder' ? (item.recursive_size || item.size || 0) : (item.size || 0),
                 mtime: item.modified_time || '',
                 id: item.id || '', // Universal identifier: file_id for Access Key
                 file_id: item.id, // Kept for backward compatibility
@@ -142,6 +145,7 @@ export class AccessKeyService extends BaseNodeApiService {
                 } : undefined, // Preview metadata if available
                 target_id: item.target_id, // For links: the file ID of the link target
                 target_node_id: item.target_node_id, // For links: the node ID where the target is located
+                recursive_file_count: item.recursive_file_count, // Number of files in folder (recursively)
             }));
 
             // For Access Key, the path will be constructed by the UI from breadcrumb navigation

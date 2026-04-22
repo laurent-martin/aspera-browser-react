@@ -17,6 +17,7 @@ export interface FileItem {
     content_type?: string; // MIME type of the file
     target_id?: string; // For Access Key links: the file ID of the link target
     target_node_id?: string; // For Access Key links: the node ID where the target is located
+    recursive_file_count?: number; // For directories: number of files contained (recursively)
 }
 
 export interface DirList {
