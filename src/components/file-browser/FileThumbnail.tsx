@@ -40,7 +40,7 @@ export function FileThumbnail({
       }
 
       try {
-        if (credentials.protocol === 'access-key' && file.file_id) {
+        if (credentials.access_type === 'access-key' && file.file_id) {
           const fileService = await FileServiceFactory.getService(credentials);
           const accessKeyService = fileService as {
             getPreview?: (fileId: string) => Promise<Blob>;

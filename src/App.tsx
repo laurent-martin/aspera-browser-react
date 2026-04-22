@@ -14,7 +14,7 @@ import { useNotificationStore } from './stores/useNotificationStore';
 import { useTransferStore } from './stores/useTransferStore';
 import { FileServiceFactory } from './services/FileServiceFactory';
 import { validateCredentials, hasAllMandatoryFields } from './utils/validation';
-import type { ConnectionProtocol, NodeAPICredentials, SSHCredentials, ConnectionCredentials } from './types';
+import type { ConnectionAccessType, NodeAPICredentials, SSHCredentials, ConnectionCredentials } from './types';
 import './App.css';
 
 const queryClient = new QueryClient();
@@ -56,18 +56,18 @@ function App() {
   const handleSaveAccount = async () => {
     setIsLoading(true);
     try {
-      // Generate default name based on protocol
+      // Generate default name based on access_type
       let defaultName = '';
       let accountId = '';
       
-      if (formData.protocol === 'ssh') {
+      if (formData.access_type === 'ssh') {
         const sshCreds = formData as SSHCredentials;
         defaultName = `${sshCreds.username}@${sshCreds.url}`;
         accountId = `ssh-${sshCreds.username}@${sshCreds.url}`;
       } else {
         const nodeCreds = formData as NodeAPICredentials;
         defaultName = `${nodeCreds.username}@${nodeCreds.url}`;
-        accountId = `${formData.protocol}-${nodeCreds.username}@${nodeCreds.url}`;
+        accountId = `${formData.access_type}-${nodeCreds.username}@${nodeCreds.url}`;
       }
       
       const finalAccountName = accountName.trim() || defaultName;
@@ -121,7 +121,7 @@ function App() {
   const handleConfigureAccount = () => {
     // Initialize with empty credentials for new account
     setFormData({
-      protocol: 'node-user',
+      access_type: 'node-user',
       url: '',
       username: '',
       password: '',
@@ -170,7 +170,7 @@ function App() {
       selectAccount(accountId);
       
       // For Access Key, browse by root file ID, otherwise use path
-      if (account.credentials.protocol === 'access-key') {
+      if (account.credentials.access_type === 'access-key') {
         const accessKeyService = fileService as { getRootFileId?: () => string | undefined };
         const rootFileId = accessKeyService.getRootFileId?.();
         if (rootFileId) {
@@ -231,7 +231,7 @@ function App() {
       const dirList = await fileService.browse(pathOrFileId);
       
       // For Access Key: generate preview URLs for files with preview info
-      if (credentials.protocol === 'access-key') {
+      if (credentials.access_type === 'access-key') {
         const nodeCreds = credentials as NodeAPICredentials;
         const filesWithPreviews = dirList.items.map(item => {
           // Check if file has preview info and it's a PNG
@@ -268,8 +268,8 @@ function App() {
       
       clearSelection();
       
-      // Clear file ID path only for non-Access Key protocols
-      if (credentials.protocol !== 'access-key') {
+      // Clear file ID path only for non-Access Key access types
+      if (credentials.access_type !== 'access-key') {
         clearFileIdPath();
         clearBreadcrumbNames();
       }
@@ -417,7 +417,7 @@ function App() {
         
         // Store the upload destination for this transfer
         if (transferUuid) {
-          const currentFileId = credentials.protocol === 'access-key' && fileIdPath.length > 0
+          const currentFileId = credentials.access_type === 'access-key' && fileIdPath.length > 0
             ? fileIdPath[fileIdPath.length - 1]
             : undefined;
           
@@ -506,7 +506,7 @@ function App() {
       clearSelection();
       
       // Refresh the current directory
-      if (credentials.protocol === 'access-key' && fileIdPath.length > 0) {
+      if (credentials.access_type === 'access-key' && fileIdPath.length > 0) {
         const currentFileId = fileIdPath[fileIdPath.length - 1];
         await handleBrowse(currentFileId);
       } else {
@@ -538,8 +538,8 @@ function App() {
       const fileService = await FileServiceFactory.getService(credentials);
       
       // For Access Key, use file_id of current directory as parent
-      // For other protocols, use the current path as parent
-      if (credentials.protocol === 'access-key' && fileIdPath.length > 0) {
+      // For other access types, use the current path as parent
+      if (credentials.access_type === 'access-key' && fileIdPath.length > 0) {
         const currentFileId = fileIdPath[fileIdPath.length - 1];
         await fileService.createDir(currentFileId, folderName);
       } else {
@@ -552,7 +552,7 @@ function App() {
       });
       
       // Refresh the current directory
-      if (credentials.protocol === 'access-key' && fileIdPath.length > 0) {
+      if (credentials.access_type === 'access-key' && fileIdPath.length > 0) {
         const currentFileId = fileIdPath[fileIdPath.length - 1];
         await handleBrowse(currentFileId);
       } else {
@@ -584,7 +584,7 @@ function App() {
 
         const fileService = await FileServiceFactory.getService(credentials);
 
-        if (credentials.protocol === 'access-key') {
+        if (credentials.access_type === 'access-key') {
           const accessKeyService = fileService as { getRootFileId?: () => string | undefined };
           const rootFileId = accessKeyService.getRootFileId?.();
           if (rootFileId && !cancelled) {
@@ -729,7 +729,7 @@ function App() {
           // Check if we're still in the same folder where the upload was initiated
           let shouldRefresh = false;
           
-          if (credentials.protocol === 'access-key' && fileIdPath.length > 0) {
+          if (credentials.access_type === 'access-key' && fileIdPath.length > 0) {
             const currentFileId = fileIdPath[fileIdPath.length - 1];
             shouldRefresh = currentFileId === uploadDestination.fileId;
           } else {
@@ -739,7 +739,7 @@ function App() {
           if (shouldRefresh) {
             console.log('Upload completed in current directory, refreshing...');
             
-            if (credentials.protocol === 'access-key' && fileIdPath.length > 0) {
+            if (credentials.access_type === 'access-key' && fileIdPath.length > 0) {
               const currentFileId = fileIdPath[fileIdPath.length - 1];
               handleBrowse(currentFileId).catch((error) => {
                 console.error('Failed to refresh after upload:', error);
@@ -790,7 +790,7 @@ function App() {
               const { credentials } = useAuthStore.getState();
               
               // For Access Key, use the current file ID
-              if (credentials.protocol === 'access-key' && fileIdPath.length > 0) {
+              if (credentials.access_type === 'access-key' && fileIdPath.length > 0) {
                 const currentFileId = fileIdPath[fileIdPath.length - 1];
                 handleBrowse(currentFileId);
               } else {
@@ -802,7 +802,7 @@ function App() {
               const { files } = useFileStore.getState();
               
               // For Access Key, check if we're navigating to a directory or link with file_id
-              if (credentials.protocol === 'access-key') {
+              if (credentials.access_type === 'access-key') {
                 // Find the file item by path or by file_id (for links using target_id)
                 const fileItem = files.find(f => f.path === pathOrFileId || f.file_id === pathOrFileId || f.target_id === pathOrFileId);
                 
@@ -871,14 +871,14 @@ function App() {
             />
             
             <Select
-              id="protocol"
-              labelText={t('settings.protocol')}
-              value={formData.protocol}
+              id="access_type"
+              labelText={t('settings.access_type')}
+              value={formData.access_type}
               onChange={(e) => {
-                const protocol = e.target.value as ConnectionProtocol;
-                if (protocol === 'ssh') {
+                const access_type = e.target.value as ConnectionAccessType;
+                if (access_type === 'ssh') {
                   setFormData({
-                    protocol: 'ssh',
+                    access_type: 'ssh',
                     url: '',
                     username: '',
                     authMethod: 'password',
@@ -886,7 +886,7 @@ function App() {
                   } as SSHCredentials);
                 } else {
                   setFormData({
-                    protocol,
+                    access_type,
                     url: '',
                     username: '',
                     password: '',
@@ -896,12 +896,12 @@ function App() {
               }}
               disabled={isLoading}
             >
-              <SelectItem value="node-user" text={t('settings.protocolNodeGen3')} />
-              <SelectItem value="access-key" text={t('settings.protocolNodeGen4')} />
-              <SelectItem value="ssh" text={t('settings.protocolSSH')} />
+              <SelectItem value="node-user" text={t('settings.access_type_node_gen3')} />
+              <SelectItem value="access-key" text={t('settings.access_type_node_gen4')} />
+              <SelectItem value="ssh" text={t('settings.access_type_ssh')} />
             </Select>
 
-            {formData.protocol === 'ssh' ? (
+            {formData.access_type === 'ssh' ? (
               <>
                 <TextInput
                   id="sshUrl"
@@ -1033,7 +1033,7 @@ function App() {
                   invalid={touched.password && !!validationErrors.password}
                   invalidText={validationErrors.password}
                 />
-                {formData.protocol === 'access-key' && (
+                {formData.access_type === 'access-key' && (
                   <Toggle
                     id="useTokenAuth"
                     labelText={t('settings.useTokenAuth')}

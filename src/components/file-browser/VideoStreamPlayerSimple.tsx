@@ -23,7 +23,7 @@ export function VideoStreamPlayerSimple({ fileId, className }: VideoStreamPlayer
     let cancelled = false;
 
     const initVideo = () => {
-      if (!credentials || credentials.protocol !== 'access-key') {
+      if (!credentials || credentials.access_type !== 'access-key') {
         if (!cancelled) {
           setError('Le streaming vidéo nécessite une connexion Access Key');
           setIsLoading(false);

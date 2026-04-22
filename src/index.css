@@ -69,13 +69,13 @@
   background-color: var(--bg-secondary) !important;
   color: var(--text-primary) !important;
   border-bottom: 1px solid var(--border-color) !important;
-  border-top: 1px solid #1a1a1a !important;
+  border-top: 1px solid var(--border-color) !important;
 }
 
 :root[data-theme="dark"] .cds--data-table td {
   background-color: var(--bg-primary) !important;
   color: var(--text-primary) !important;
-  border-top: 1px solid #1a1a1a !important;
+  border-top: 1px solid var(--border-color) !important;
 }
 
 :root[data-theme="dark"] .cds--data-table tbody tr:hover td {

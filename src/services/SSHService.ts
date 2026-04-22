@@ -19,8 +19,8 @@ export class SSHService implements IFileService {
     private port: number = 22;
 
     setCredentials(credentials: ConnectionCredentials): void {
-        if (credentials.protocol !== 'ssh') {
-            throw new Error('Invalid protocol for SSHService');
+        if (credentials.access_type !== 'ssh') {
+            throw new Error('Invalid access_type for SSHService');
         }
 
         this.credentials = credentials as SSHCredentials;

@@ -81,7 +81,7 @@ export function FileBrowser({
       const targetFileId = newFileIdPath[newFileIdPath.length - 1];
       onNavigate(targetFileId);
     } else {
-      // For other protocols: use path-based navigation
+      // For other access types: use path-based navigation
       onNavigate(path);
     }
   };

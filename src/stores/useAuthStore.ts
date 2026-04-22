@@ -11,13 +11,13 @@ function isValidCredentials(credentials: any): credentials is ConnectionCredenti
         return false;
     }
 
-    const validProtocols = ['node-user', 'access-key', 'ssh'];
-    if (!validProtocols.includes(credentials.protocol)) {
+    const validAccessTypes = ['node-user', 'access-key', 'ssh'];
+    if (!validAccessTypes.includes(credentials.access_type)) {
         return false;
     }
 
-    // Validate protocol-specific fields
-    if (credentials.protocol === 'ssh') {
+    // Validate access_type-specific fields
+    if (credentials.access_type === 'ssh') {
         return !!(credentials.url && credentials.username && credentials.authMethod);
     } else {
         return !!(credentials.url && credentials.username && credentials.password !== undefined);
@@ -55,7 +55,7 @@ interface AuthState {
 }
 
 const emptyCredentials: ConnectionCredentials = {
-    protocol: 'node-user',
+    access_type: 'node-user',
     url: '',
     username: '',
     password: '',
@@ -70,7 +70,7 @@ export const useAuthStore = create<AuthState>()(
             currentAccountId: null,
             setCredentials: (credentials) => {
                 // Validate credentials before setting
-                if (!credentials || !credentials.protocol) {
+                if (!credentials || !credentials.access_type) {
                     console.error('Invalid credentials provided:', credentials);
                     return;
                 }
@@ -88,7 +88,7 @@ export const useAuthStore = create<AuthState>()(
                 const account = get().savedAccounts.find(a => a.id === accountId);
                 if (account) {
                     // Validate credentials before setting
-                    if (!account.credentials || !account.credentials.protocol) {
+                    if (!account.credentials || !account.credentials.access_type) {
                         console.error('Invalid credentials in saved account:', account);
                         return;
                     }

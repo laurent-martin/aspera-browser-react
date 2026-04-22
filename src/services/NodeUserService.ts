@@ -6,9 +6,9 @@ import { BaseNodeApiService } from './BaseNodeApiService';
  */
 export class NodeUserService extends BaseNodeApiService {
     setCredentials(credentials: ConnectionCredentials): void {
-        this.validateProtocol(credentials, 'node-user');
+        this.validateAccessType(credentials, 'node-user');
 
-        // Type assertion after protocol validation
+        // Type assertion after access_type validation
         const nodeCredentials = credentials as NodeAPICredentials;
         this.credentials = nodeCredentials;
         this.client.defaults.baseURL = nodeCredentials.url;

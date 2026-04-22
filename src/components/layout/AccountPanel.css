@@ -71,7 +71,7 @@
 
 .account-panel-header {
     padding: 1rem;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .account-panel-header h3 {
@@ -136,7 +136,7 @@
 
 .account-panel-divider {
     height: 1px;
-    background-color: #e0e0e0;
+    background-color: var(--border-color);
     margin: 0.5rem 0;
 }
 

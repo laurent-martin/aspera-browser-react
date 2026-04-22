@@ -50,7 +50,7 @@ export function MediaViewer({ file, isOpen, onClose }: MediaViewerProps) {
         // Check whether this is a video
         const isVideo = contentType.startsWith('video/') || file.basename.toLowerCase().match(/\.(mp4|mov|avi|mkv|webm)$/);
         
-        if (isVideo && credentials.protocol === 'access-key' && file.file_id) {
+        if (isVideo && credentials.access_type === 'access-key' && file.file_id) {
           // For videos over access-key connections, use streaming playback
           const fileService = await FileServiceFactory.getService(credentials);
           const accessKeyService = fileService as {
@@ -111,7 +111,7 @@ export function MediaViewer({ file, isOpen, onClose }: MediaViewerProps) {
             setMediaType('image');
           }
           
-          if (credentials.protocol === 'access-key' && file.file_id) {
+          if (credentials.access_type === 'access-key' && file.file_id) {
             const fileService = await FileServiceFactory.getService(credentials);
             const accessKeyService = fileService as {
               getPreview?: (fileId: string) => Promise<Blob>;

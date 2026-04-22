@@ -45,11 +45,11 @@ export abstract class BaseNodeApiService implements IFileService {
     }
 
     /**
-     * Validate protocol matches expected protocol for this service
+     * Validate access_type matches expected access_type for this service
      */
-    protected validateProtocol(credentials: ConnectionCredentials, expectedProtocol: string): void {
-        if (credentials.protocol !== expectedProtocol) {
-            throw new Error(`Invalid protocol for ${this.constructor.name}`);
+    protected validateAccessType(credentials: ConnectionCredentials, expectedAccessType: string): void {
+        if (credentials.access_type !== expectedAccessType) {
+            throw new Error(`Invalid access_type for ${this.constructor.name}`);
         }
     }
 

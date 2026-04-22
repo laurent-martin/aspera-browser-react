@@ -26,17 +26,17 @@ export interface DirList {
     items: FileItem[];
 }
 
-// Connection protocol types
-export type ConnectionProtocol = 'node-user' | 'access-key' | 'ssh';
+// Connection access type
+export type ConnectionAccessType = 'node-user' | 'access-key' | 'ssh';
 
 // Base credentials
 export interface BaseCredentials {
-    protocol: ConnectionProtocol;
+    access_type: ConnectionAccessType;
 }
 
 // Credentials for Node API (Node User and Access Key)
 export interface NodeAPICredentials extends BaseCredentials {
-    protocol: 'node-user' | 'access-key';
+    access_type: 'node-user' | 'access-key';
     url: string;
     username: string;
     password: string;
@@ -45,7 +45,7 @@ export interface NodeAPICredentials extends BaseCredentials {
 
 // Credentials for SSH
 export interface SSHCredentials extends BaseCredentials {
-    protocol: 'ssh';
+    access_type: 'ssh';
     url: string; // Format: ssh://hostname:port
     username: string;
     authMethod: 'password' | 'privateKey';

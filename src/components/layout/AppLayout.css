@@ -105,7 +105,6 @@
     height: 8px;
     background-color: #da1e28;
     border-radius: 50%;
-    border: 2px solid #ffffff;
 }
 
 /* Success indicator for Web Agent available */
@@ -122,5 +121,4 @@
     height: 8px;
     background-color: #24a148;
     border-radius: 50%;
-    border: 2px solid #ffffff;
 }

@@ -118,10 +118,10 @@ export function validateSSHCredentials(credentials: SSHCredentials): { valid: bo
 }
 
 /**
- * Validate connection credentials based on protocol
+ * Validate connection credentials based on access_type
  */
 export function validateCredentials(credentials: ConnectionCredentials): { valid: boolean; errors: Record<string, string> } {
-    if (credentials.protocol === 'ssh') {
+    if (credentials.access_type === 'ssh') {
         return validateSSHCredentials(credentials as SSHCredentials);
     } else {
         return validateNodeAPICredentials(credentials as NodeAPICredentials);
@@ -132,7 +132,7 @@ export function validateCredentials(credentials: ConnectionCredentials): { valid
  * Check if all mandatory fields are filled (basic check)
  */
 export function hasAllMandatoryFields(credentials: ConnectionCredentials): boolean {
-    if (credentials.protocol === 'ssh') {
+    if (credentials.access_type === 'ssh') {
         const sshCreds = credentials as SSHCredentials;
         const hasBasicFields = !!(sshCreds.url && sshCreds.username);
 

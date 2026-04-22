@@ -53,7 +53,7 @@ export function AccountPanel({ onDisconnect, onConfigureAccount, onSelectAccount
                   <div className="account-info">
                     <div className="account-name">{account.name}</div>
                     <div className="account-url">
-                      {account.credentials.protocol === 'ssh'
+                      {account.credentials.access_type === 'ssh'
                         ? (account.credentials as SSHCredentials).url
                         : (account.credentials as NodeAPICredentials).url
                       }

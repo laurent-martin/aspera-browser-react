@@ -43,9 +43,9 @@ export class AccessKeyService extends BaseNodeApiService {
     private previewCache = new Map<string, Blob>();
 
     async setCredentials(credentials: ConnectionCredentials): Promise<void> {
-        this.validateProtocol(credentials, 'access-key');
+        this.validateAccessType(credentials, 'access-key');
 
-        // Type assertion after protocol validation
+        // Type assertion after access_type validation
         const nodeCredentials = credentials as NodeAPICredentials;
 
         // Create a unique key for these credentials to detect changes

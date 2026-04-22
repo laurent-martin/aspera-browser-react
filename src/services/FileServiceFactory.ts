@@ -5,7 +5,7 @@ import { AccessKeyService } from './AccessKeyService';
 import { SSHService } from './SSHService';
 
 /**
- * Factory to create the appropriate service based on connection protocol
+ * Factory to create the appropriate service based on connection access type
  */
 export class FileServiceFactory {
     private static instance: IFileService | null = null;
@@ -15,13 +15,13 @@ export class FileServiceFactory {
      */
     static async getService(credentials: ConnectionCredentials): Promise<IFileService> {
         // Validate credentials
-        if (!credentials || !credentials.protocol) {
-            throw new Error('Invalid credentials: protocol is required');
+        if (!credentials || !credentials.access_type) {
+            throw new Error('Invalid credentials: access_type is required');
         }
 
-        // If protocol changes, create a new instance
+        // If access_type changes, create a new instance
         if (this.instance) {
-            // Check if protocol has changed
+            // Check if access_type has changed
             const needsNewInstance = this.shouldCreateNewInstance(credentials);
             if (!needsNewInstance) {
                 await this.instance.setCredentials(credentials);
@@ -29,8 +29,8 @@ export class FileServiceFactory {
             }
         }
 
-        // Create a new instance based on protocol
-        switch (credentials.protocol) {
+        // Create a new instance based on access_type
+        switch (credentials.access_type) {
             case 'node-user':
                 this.instance = new NodeUserService();
                 break;
@@ -41,7 +41,7 @@ export class FileServiceFactory {
                 this.instance = new SSHService();
                 break;
             default:
-                throw new Error(`Unknown protocol: ${(credentials as any).protocol}. Valid protocols are: node-user, access-key, ssh`);
+                throw new Error(`Unknown access_type: ${(credentials as any).access_type}. Valid access types are: node-user, access-key, ssh`);
         }
 
         await this.instance.setCredentials(credentials);
@@ -57,14 +57,14 @@ export class FileServiceFactory {
         }
 
         // Check the type of current instance
-        const currentProtocol = this.getCurrentProtocol();
-        return currentProtocol !== credentials.protocol;
+        const currentAccessType = this.getCurrentAccessType();
+        return currentAccessType !== credentials.access_type;
     }
 
     /**
-     * Returns the protocol of the current instance
+     * Returns the access_type of the current instance
      */
-    private static getCurrentProtocol(): string | null {
+    private static getCurrentAccessType(): string | null {
         if (!this.instance) {
             return null;
         }

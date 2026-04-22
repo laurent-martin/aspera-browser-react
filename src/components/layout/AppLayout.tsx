@@ -44,15 +44,15 @@ export function AppLayout({ children, onDisconnect, onConfigureAccount, onSelect
           const account = savedAccounts.find(a => a.id === currentAccountId);
           if (!account) return null;
           
-          const protocolKey = account.credentials.protocol === 'node-user'
-            ? 'protocolNodeGen3'
-            : account.credentials.protocol === 'access-key'
-            ? 'protocolNodeGen4'
-            : 'protocolSSH';
+          const accessTypeKey = account.credentials.access_type === 'node-user'
+            ? 'access_type_node_gen3'
+            : account.credentials.access_type === 'access-key'
+            ? 'access_type_node_gen4'
+            : 'access_type_ssh';
           
           return (
             <div className="connection-info">
-              {t(`connection:settings.${protocolKey}`)}: {account.name}
+              {t(`connection:settings.${accessTypeKey}`)}: {account.name}
             </div>
           );
         })()}
