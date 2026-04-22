@@ -13,6 +13,7 @@
     margin: 0;
     font-size: 1.125rem;
     font-weight: 600;
+    color: var(--text-primary);
 }
 
 .language-panel-content {
@@ -29,21 +30,21 @@
     text-align: left;
     cursor: pointer;
     font-size: 0.875rem;
-    color: #161616;
+    color: var(--text-primary);
     transition: background-color 0.11s cubic-bezier(0.2, 0, 0.38, 0.9);
     display: block;
 }
 
 .language-panel-item:hover {
-    background-color: #e5e5e5;
+    background-color: var(--bg-tertiary);
 }
 
 .language-panel-item:active {
-    background-color: #d0d0d0;
+    background-color: var(--bg-tertiary);
 }
 
 .language-panel-item.active {
-    background-color: #e0e0e0;
-    border-left: 3px solid #0f62fe;
+    background-color: var(--bg-tertiary);
+    border-left: 3px solid var(--focus-color);
     font-weight: 600;
 }

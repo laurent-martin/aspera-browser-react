@@ -78,6 +78,7 @@
     margin: 0;
     font-size: 1.125rem;
     font-weight: 600;
+    color: var(--text-primary);
 }
 
 .account-panel-content {
@@ -94,21 +95,21 @@
     text-align: left;
     cursor: pointer;
     font-size: 0.875rem;
-    color: #161616;
+    color: var(--text-primary);
     transition: background-color 0.11s cubic-bezier(0.2, 0, 0.38, 0.9);
     display: block;
 }
 
 .account-panel-item:hover:not(.disabled) {
-    background-color: #e5e5e5;
+    background-color: var(--bg-tertiary);
 }
 
 .account-panel-item:active:not(.disabled) {
-    background-color: #d0d0d0;
+    background-color: var(--bg-tertiary);
 }
 
 .account-panel-item.disabled {
-    color: #c6c6c6;
+    color: var(--text-tertiary);
     cursor: not-allowed;
 }
 
@@ -117,18 +118,19 @@
 }
 
 .account-panel-item.account-item.active {
-    background-color: #e0e0e0;
-    border-left: 3px solid #0f62fe;
+    background-color: var(--bg-tertiary);
+    border-left: 3px solid var(--focus-color);
 }
 
 .account-name {
     font-weight: 600;
     margin-bottom: 0.25rem;
+    color: var(--text-primary);
 }
 
 .account-url {
     font-size: 0.75rem;
-    color: #525252;
+    color: var(--text-secondary);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -136,7 +138,7 @@
 
 .account-type {
     font-size: 0.6875rem;
-    color: #8d8d8d;
+    color: var(--text-tertiary);
     font-weight: 500;
     margin-top: 0.125rem;
 }
@@ -151,7 +153,7 @@
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
     font-weight: 600;
-    color: #525252;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.02em;
 }

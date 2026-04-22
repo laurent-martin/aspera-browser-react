@@ -35,7 +35,7 @@
 
 .welcome-guidance {
   font-size: 1.125rem;
-  color: #0f62fe;
+  color: var(--focus-color);
   font-weight: 500;
   margin-bottom: 0.5rem;
 }

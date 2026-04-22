@@ -11,8 +11,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(15, 98, 254, 0.1);
-    border: 3px dashed #0f62fe;
+    background-color: color-mix(in srgb, var(--focus-color) 10%, transparent);
+    border: 3px dashed var(--focus-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,14 +22,14 @@
 }
 
 .drop-overlay svg {
-    color: #0f62fe;
+    color: var(--focus-color);
     margin-bottom: 1rem;
 }
 
 .drop-overlay p {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #0f62fe;
+    color: var(--focus-color);
 }
 
 /* Main toolbar - block structure */
@@ -46,7 +46,7 @@
 .toolbar-breadcrumb {
     padding: 1rem 1.5rem;
     background-color: var(--bg-secondary);
-    border-bottom: 2px solid #0f62fe;
+    border-bottom: 2px solid var(--focus-color);
     min-height: 56px;
     display: block;
     position: relative;
@@ -71,7 +71,7 @@
 
 .toolbar-breadcrumb .cds--breadcrumb-item a,
 .toolbar-breadcrumb .cds--breadcrumb-item button {
-    color: #0f62fe;
+    color: var(--focus-color);
     text-decoration: none;
     cursor: pointer !important;
     padding: 0.375rem 0.625rem;
@@ -91,17 +91,17 @@
 
 .toolbar-breadcrumb .cds--breadcrumb-item a:hover,
 .toolbar-breadcrumb .cds--breadcrumb-item button:hover {
-    background-color: #e8f4ff;
-    border-color: #0f62fe;
+    background-color: color-mix(in srgb, var(--focus-color) 10%, var(--bg-primary));
+    border-color: var(--focus-color);
     text-decoration: none;
 }
 
 .toolbar-breadcrumb .cds--breadcrumb-item--current a,
 .toolbar-breadcrumb .cds--breadcrumb-item--current button {
     font-weight: 600;
-    background-color: #0f62fe;
+    background-color: var(--focus-color);
     color: white;
-    border-color: #0f62fe;
+    border-color: var(--focus-color);
 }
 
 /* Actions section - second row */
@@ -372,7 +372,7 @@
 }
 
 .file-list-view__cell--name-clickable {
-    color: #0f62fe;
+    color: var(--focus-color);
     font-weight: 500;
 }
 
@@ -396,7 +396,7 @@
 }
 
 .file-list-view__thumbnail-button:focus {
-    outline: 2px solid #0f62fe;
+    outline: 2px solid var(--focus-color);
     outline-offset: 2px;
 }
 

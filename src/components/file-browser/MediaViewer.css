@@ -87,7 +87,7 @@
     width: 48px;
     height: 48px;
     border: 4px solid #393939;
-    border-top-color: #0f62fe;
+    border-top-color: var(--focus-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -102,7 +102,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ff8389;
+    color: var(--error-color);
     padding: 2rem;
     text-align: center;
 }
@@ -144,7 +144,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ff8389;
+    color: var(--error-color);
     padding: 2rem;
     text-align: center;
     min-height: 300px;
@@ -165,7 +165,7 @@
 
 .loading-progress-bar {
     height: 4px;
-    background-color: #0f62fe;
+    background-color: var(--focus-color);
     border-radius: 2px;
     transition: width 0.3s ease;
 }

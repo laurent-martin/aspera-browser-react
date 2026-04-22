@@ -26,7 +26,7 @@
 .file-card-actions-menu {
     background-color: var(--bg-primary);
     border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 6px color-mix(in srgb, var(--text-primary) 15%, transparent);
 }
 
 .file-card {
@@ -41,7 +41,7 @@
     outline: none;
     background-color: var(--bg-primary);
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--text-primary) 10%, transparent);
 }
 
 .file-card:focus {
@@ -54,20 +54,20 @@
 
 .file-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--text-primary) 15%, transparent);
     background-color: var(--bg-secondary);
     border-color: var(--border-color);
 }
 
 .file-card.selected {
-    border: 2px solid #0f62fe;
+    border: 2px solid var(--focus-color);
     background-color: var(--bg-secondary);
-    box-shadow: 0 2px 8px rgba(15, 98, 254, 0.2);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--focus-color) 20%, transparent);
 }
 
 .file-card-icon {
     margin: 0 0 0.5rem 0;
-    color: #0f62fe;
+    color: var(--focus-color);
     position: relative;
     width: 100%;
     height: 100px;
@@ -84,7 +84,7 @@
     object-fit: cover;
     object-position: center;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px color-mix(in srgb, var(--text-primary) 10%, transparent);
     transform: scale(2.0);
 }
 

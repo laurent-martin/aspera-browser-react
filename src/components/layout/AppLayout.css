@@ -68,7 +68,7 @@
     margin: 1rem 0 0.5rem 0;
     font-size: 1rem;
     font-weight: 600;
-    color: #0f62fe;
+    color: var(--focus-color);
 }
 
 .help-content p {
@@ -103,7 +103,7 @@
     right: 8px;
     width: 8px;
     height: 8px;
-    background-color: #da1e28;
+    background-color: var(--error-color);
     border-radius: 50%;
 }
 
@@ -119,6 +119,6 @@
     right: 8px;
     width: 8px;
     height: 8px;
-    background-color: #24a148;
+    background-color: var(--success-color);
     border-radius: 50%;
 }
