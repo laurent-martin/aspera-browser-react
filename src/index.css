@@ -31,7 +31,6 @@
   --error-color: #da1e28;
   --error-hover: #ba1b23;
   --success-color: #24a148;
-  --warning-color: #f1c21b;
 }
 
 :root[data-theme="dark"] {
@@ -62,7 +61,6 @@
   --error-color: #ff8389;
   --error-hover: #520408;
   --success-color: #42be65;
-  --warning-color: #f1c21b;
 }
 
 /* Carbon Header theme support */

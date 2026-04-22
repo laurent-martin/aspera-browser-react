@@ -52,14 +52,14 @@
 }
 
 .account-action-btn.delete:hover {
-    background: #da1e28 !important;
-    color: #ffffff !important;
+    background: #da1e28;
+    color: #ffffff;
 }
 
 .account-action-btn.delete:hover svg {
-    color: #ffffff !important;
-    fill: currentColor !important;
-    opacity: 1 !important;
+    color: #ffffff;
+    fill: currentColor;
+    opacity: 1;
     transform: scale(1.1);
 }
 

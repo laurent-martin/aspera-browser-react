@@ -35,11 +35,11 @@
 .app-content {
     flex: 1;
     overflow: hidden;
-    padding: 0 !important;
-    margin: 0 !important;
+    padding: 0;
+    margin: 0;
     background-color: var(--bg-primary);
-    display: flex !important;
-    flex-direction: column !important;
+    display: flex;
+    flex-direction: column;
     min-height: 0;
     max-height: 100%;
     transition: background-color 0.3s ease;
@@ -80,15 +80,15 @@
 /* Fix tooltip position for language button (last button in header) */
 .cds--header__action:last-child .cds--popover-container,
 .cds--header__action:last-child .cds--tooltip {
-    transform: translateX(-100%) !important;
-    left: auto !important;
-    right: 0 !important;
+    transform: translateX(-100%);
+    left: auto;
+    right: 0;
 }
 
 .cds--header__action:last-child .cds--popover-caret,
 .cds--header__action:last-child .cds--tooltip__caret {
-    left: auto !important;
-    right: 1rem !important;
+    left: auto;
+    right: 1rem;
 }
 
 /* Warning indicator for Web Agent not available */

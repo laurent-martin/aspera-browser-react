@@ -73,7 +73,7 @@
 .toolbar-breadcrumb .cds--breadcrumb-item button {
     color: var(--focus-color);
     text-decoration: none;
-    cursor: pointer !important;
+    cursor: pointer;
     padding: 0.375rem 0.625rem;
     border-radius: 4px;
     transition: all 0.2s;
@@ -86,7 +86,7 @@
 }
 
 .toolbar-breadcrumb .cds--breadcrumb-item {
-    cursor: pointer !important;
+    cursor: pointer;
 }
 
 .toolbar-breadcrumb .cds--breadcrumb-item a:hover,
@@ -96,12 +96,8 @@
     text-decoration: none;
 }
 
-.toolbar-breadcrumb .cds--breadcrumb-item--current a,
-.toolbar-breadcrumb .cds--breadcrumb-item--current button {
-    font-weight: 600;
-    background-color: var(--focus-color);
-    color: white;
-    border-color: var(--focus-color);
+.toolbar-breadcrumb .cds--link[aria-current="true"] {
+    color: var(--text-secondary);
 }
 
 /* Actions section - second row */
@@ -154,7 +150,7 @@
     background-color: transparent;
     border-right: 1px solid var(--border-color);
     transition: all 0.2s ease;
-    box-shadow: none !important;
+    box-shadow: none;
 }
 
 .toolbar-view-switcher .cds--content-switcher-btn:last-child {
@@ -261,19 +257,19 @@
 
 .file-list-view .cds--data-table-container {
     width: 100%;
-    max-height: none !important;
+    max-height: none;
 }
 
 .file-list-view .cds--data-table_inner-container {
-    max-height: none !important;
+    max-height: none;
 }
 
 .file-list-view .cds--data-table-content {
-    max-height: none !important;
+    max-height: none;
 }
 
 .file-list-view table.cds--data-table {
-    max-height: none !important;
+    max-height: none;
 }
 
 .file-list-view__row--clickable {
@@ -282,11 +278,11 @@
 }
 
 .file-list-view__row--clickable:hover {
-    background-color: var(--bg-secondary) !important;
+    background-color: var(--bg-secondary);
 }
 
 .file-list-view__row--clickable:active {
-    background-color: var(--bg-tertiary) !important;
+    background-color: var(--bg-tertiary);
 }
 
 .file-list-view__header--icon,
@@ -300,9 +296,9 @@
 }
 
 .file-list-view__cell--icon {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .file-list-view__header--thumbnail,
@@ -316,9 +312,9 @@
 }
 
 .file-list-view__cell--thumbnail {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .file-list-view__header--name,
@@ -366,9 +362,9 @@
 }
 
 .file-list-view__cell--actions {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .file-list-view__cell--name-clickable {
