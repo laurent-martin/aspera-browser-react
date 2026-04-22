@@ -4,31 +4,65 @@
 
 /* Theme variables */
 :root[data-theme="light"] {
+  /* Backgrounds - lightest to darkest */
   --bg-primary: #ffffff;
+  /* Main background */
   --bg-secondary: #f4f4f4;
+  /* Cards, panels */
   --bg-tertiary: #e0e0e0;
+  /* Hover states */
+
+  /* Text colors - most visible to most subtle */
   --text-primary: #161616;
   --text-secondary: #525252;
   --text-tertiary: #8d8d8d;
+
+  /* Borders & dividers */
   --border-color: #e0e0e0;
+
+  /* Component-specific */
   --header-bg: #ffffff;
   --header-text: #161616;
   --panel-bg: #ffffff;
   --panel-border: #e0e0e0;
+
+  /* Semantic colors */
+  --focus-color: #0f62fe;
+  --error-color: #da1e28;
+  --error-hover: #ba1b23;
+  --success-color: #24a148;
+  --warning-color: #f1c21b;
 }
 
 :root[data-theme="dark"] {
+  /* Backgrounds - darkest to lightest */
   --bg-primary: #161616;
+  /* Main background */
   --bg-secondary: #262626;
+  /* Cards, panels */
   --bg-tertiary: #393939;
+  /* Hover states */
+
+  /* Text colors - most visible to most subtle */
   --text-primary: #f4f4f4;
   --text-secondary: #c6c6c6;
   --text-tertiary: #8d8d8d;
+
+  /* Borders & dividers */
   --border-color: #393939;
+
+  /* Component-specific */
   --header-bg: #262626;
   --header-text: #f4f4f4;
   --panel-bg: #262626;
   --panel-border: #393939;
+
+  /* Semantic colors */
+  --focus-color: #0f62fe;
+  --error-color: #ff8389;
+  --error-hover: #520408;
+  --success-color: #42be65;
+  --warning-color: #f1c21b;
 }
 
 /* Carbon Header theme support */
@@ -52,7 +86,7 @@
 
 :root[data-theme="dark"] .cds--header__action--active {
   background-color: var(--bg-tertiary) !important;
-  border-left: 3px solid #0f62fe;
+  border-left: 3px solid var(--focus-color);
 }
 
 /* Carbon DataTable theme support */
@@ -130,7 +164,7 @@
 }
 
 :root[data-theme="dark"] .cds--overflow-menu:focus {
-  outline: 2px solid #0f62fe;
+  outline: 2px solid var(--focus-color);
   outline-offset: -2px;
 }
 
@@ -149,12 +183,12 @@
 }
 
 :root[data-theme="dark"] .cds--overflow-menu-options__option--danger {
-  color: #ff8389 !important;
+  color: var(--error-color) !important;
 }
 
 :root[data-theme="dark"] .cds--overflow-menu-options__option--danger:hover {
-  background-color: #520408 !important;
-  color: #ff8389 !important;
+  background-color: var(--error-hover) !important;
+  color: var(--error-color) !important;
 }
 
 html {

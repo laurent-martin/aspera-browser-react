@@ -150,10 +150,11 @@
     font-size: 1.25rem;
     font-weight: 400;
     min-width: 48px;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     background-color: transparent;
     border-right: 1px solid var(--border-color);
     transition: all 0.2s ease;
+    box-shadow: none !important;
 }
 
 .toolbar-view-switcher .cds--content-switcher-btn:last-child {
@@ -166,14 +167,36 @@
 
 .toolbar-view-switcher .cds--content-switcher-btn.cds--content-switcher--selected,
 .toolbar-view-switcher .cds--content-switcher-btn[aria-selected="true"] {
-    background-color: #0f62fe !important;
-    color: white !important;
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
     font-weight: 600;
 }
 
 .toolbar-view-switcher .cds--content-switcher-btn.cds--content-switcher--selected:hover,
 .toolbar-view-switcher .cds--content-switcher-btn[aria-selected="true"]:hover {
-    background-color: #0353e9 !important;
+    background-color: var(--bg-primary) !important;
+}
+
+.toolbar-view-switcher .cds--content-switcher-btn:focus,
+.toolbar-view-switcher .cds--content-switcher-btn:focus-visible,
+.toolbar-view-switcher .cds--content-switcher-btn:active,
+.toolbar-view-switcher .cds--content-switcher-btn.cds--content-switcher--selected:focus,
+.toolbar-view-switcher .cds--content-switcher-btn[aria-selected="true"]:focus,
+.toolbar-view-switcher .cds--content-switcher-btn[aria-selected="true"]:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+.toolbar-view-switcher .cds--content-switcher-btn::before,
+.toolbar-view-switcher .cds--content-switcher-btn::after,
+.toolbar-view-switcher .cds--content-switcher-btn:focus::before,
+.toolbar-view-switcher .cds--content-switcher-btn:focus-visible::before,
+.toolbar-view-switcher .cds--content-switcher-btn[aria-selected="true"]::before,
+.toolbar-view-switcher .cds--content-switcher-btn[aria-selected="true"]::after {
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
 }
 
 /* Responsive */
