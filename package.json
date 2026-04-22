@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:gh-pages": "tsc -b && vite build --base=/aspera-browser-react/",
     "lint": "eslint .",
     "preview": "vite preview",
     "clobber": "rm -rf node_modules dist .vite package-lock.json",

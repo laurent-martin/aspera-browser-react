@@ -52,6 +52,27 @@ npm run preview
 npm run generate:api-types
 ```
 
+### Deployment on GitHub Pages
+
+The application can be deployed for free on GitHub Pages:
+
+```bash
+# Deployment is automatic via GitHub Actions
+# Each push to main branch triggers build and deployment
+
+# To test the GitHub Pages build locally:
+npm run build:gh-pages
+npm run preview
+```
+
+**Required configuration:**
+
+1. Enable GitHub Pages in repository settings (Settings > Pages)
+2. Select "GitHub Actions" as the source
+3. The `.github/workflows/deploy.yml` workflow will run automatically
+
+**Deployment URL:** `https://<username>.github.io/aspera-browser-react/`
+
 ### Deployment with Docker
 
 ```bash
