@@ -28,7 +28,7 @@ export interface DirList {
 }
 
 // Connection access type
-export type ConnectionAccessType = 'node-user' | 'access-key' | 'ssh';
+export type ConnectionAccessType = 'access-key' | 'node-user' | 'ssh';
 
 // Base credentials
 export interface BaseCredentials {
@@ -37,7 +37,7 @@ export interface BaseCredentials {
 
 // Credentials for Node API (Node User and Access Key)
 export interface NodeAPICredentials extends BaseCredentials {
-    access_type: 'node-user' | 'access-key';
+    access_type: 'access-key' | 'node-user';
     url: string;
     username: string;
     password: string;

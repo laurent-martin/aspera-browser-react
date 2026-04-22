@@ -41,7 +41,7 @@ export class FileServiceFactory {
                 this.instance = new SSHService();
                 break;
             default:
-                throw new Error(`Unknown access_type: ${(credentials as ConnectionCredentials).access_type}. Valid access types are: node-user, access-key, ssh`);
+                throw new Error(`Unknown access_type: ${(credentials as ConnectionCredentials).access_type}. Valid access types are: access-key, node-user, ssh`);
         }
 
         await this.instance.setCredentials(credentials);

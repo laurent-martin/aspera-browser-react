@@ -12,7 +12,7 @@ function isValidCredentials(credentials: unknown): credentials is ConnectionCred
     }
 
     const cred = credentials as Record<string, unknown>;
-    const validAccessTypes = ['node-user', 'access-key', 'ssh'];
+    const validAccessTypes = ['access-key', 'node-user', 'ssh'];
     if (!validAccessTypes.includes(cred.access_type as string)) {
         return false;
     }

@@ -929,8 +929,8 @@ function App() {
               }}
               disabled={isLoading}
             >
-              <SelectItem value="node-user" text={t('settings.access_type_node_gen3')} />
               <SelectItem value="access-key" text={t('settings.access_type_node_gen4')} />
+              <SelectItem value="node-user" text={t('settings.access_type_node_gen3')} />
               <SelectItem value="ssh" text={t('settings.access_type_ssh')} />
             </Select>
 
