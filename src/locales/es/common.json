@@ -36,5 +36,10 @@
     "menuAriaLabel": "Seleccionar idioma",
     "title": "Idioma",
     "nativeName": "Español"
+  },
+  "theme": {
+    "toggleAriaLabel": "Cambiar tema",
+    "light": "Claro",
+    "dark": "Oscuro"
   }
 }

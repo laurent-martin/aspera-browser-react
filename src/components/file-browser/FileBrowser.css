@@ -34,22 +34,24 @@
 
 /* Main toolbar - block structure */
 .file-browser-toolbar {
-    background-color: #ffffff;
-    border-bottom: 2px solid #e0e0e0;
+    background-color: var(--bg-primary);
+    border-bottom: 2px solid var(--border-color);
     flex-shrink: 0;
     position: relative;
     z-index: 10;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Breadcrumb section - first row */
 .toolbar-breadcrumb {
     padding: 1rem 1.5rem;
-    background-color: #f4f4f4;
+    background-color: var(--bg-secondary);
     border-bottom: 2px solid #0f62fe;
     min-height: 56px;
     display: block;
     position: relative;
     z-index: 11;
+    transition: background-color 0.3s ease;
 }
 
 
@@ -79,8 +81,8 @@
     align-items: center;
     gap: 0.25rem;
     font-weight: 500;
-    background-color: white;
-    border: 1px solid #e0e0e0;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
 }
 
 .toolbar-breadcrumb .cds--breadcrumb-item {
@@ -109,9 +111,10 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     position: relative;
     z-index: 10;
+    transition: background-color 0.3s ease;
 }
 
 .toolbar-buttons {
@@ -174,9 +177,10 @@
 /* File browser content */
 .file-browser-content {
     flex: 1;
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     position: relative;
     overflow: auto;
+    transition: background-color 0.3s ease;
 }
 
 .loading-container {
@@ -194,7 +198,7 @@
     min-height: 400px;
     font-size: 1.5rem;
     font-weight: 500;
-    color: #8d8d8d;
+    color: var(--text-tertiary);
     text-align: center;
 }
 
@@ -225,11 +229,11 @@
 }
 
 .file-list-view__row--clickable:hover {
-    background-color: #e8f4ff !important;
+    background-color: var(--bg-secondary) !important;
 }
 
 .file-list-view__row--clickable:active {
-    background-color: #d0e8ff !important;
+    background-color: var(--bg-tertiary) !important;
 }
 
 .file-list-view__header--icon,

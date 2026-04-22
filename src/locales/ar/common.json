@@ -36,5 +36,10 @@
     "menuAriaLabel": "اختر اللغة",
     "title": "اللغة",
     "nativeName": "العربية"
+  },
+  "theme": {
+    "toggleAriaLabel": "تبديل المظهر",
+    "light": "فاتح",
+    "dark": "داكن"
   }
 }

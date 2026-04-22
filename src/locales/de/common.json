@@ -36,5 +36,10 @@
     "menuAriaLabel": "Sprache auswählen",
     "title": "Sprache",
     "nativeName": "Deutsch"
+  },
+  "theme": {
+    "toggleAriaLabel": "Design wechseln",
+    "light": "Hell",
+    "dark": "Dunkel"
   }
 }

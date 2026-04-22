@@ -36,5 +36,10 @@
     "menuAriaLabel": "选择语言",
     "title": "语言",
     "nativeName": "中文"
+  },
+  "theme": {
+    "toggleAriaLabel": "切换主题",
+    "light": "浅色",
+    "dark": "深色"
   }
 }

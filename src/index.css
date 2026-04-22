@@ -2,6 +2,117 @@
   box-sizing: border-box;
 }
 
+/* Theme variables */
+:root[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f4f4f4;
+  --bg-tertiary: #e0e0e0;
+  --text-primary: #161616;
+  --text-secondary: #525252;
+  --text-tertiary: #8d8d8d;
+  --border-color: #e0e0e0;
+  --header-bg: #ffffff;
+  --header-text: #161616;
+  --panel-bg: #ffffff;
+  --panel-border: #e0e0e0;
+}
+
+:root[data-theme="dark"] {
+  --bg-primary: #161616;
+  --bg-secondary: #262626;
+  --bg-tertiary: #393939;
+  --text-primary: #f4f4f4;
+  --text-secondary: #c6c6c6;
+  --text-tertiary: #8d8d8d;
+  --border-color: #393939;
+  --header-bg: #262626;
+  --header-text: #f4f4f4;
+  --panel-bg: #262626;
+  --panel-border: #393939;
+}
+
+/* Carbon Header theme support */
+:root[data-theme="dark"] .cds--header {
+  background-color: var(--header-bg) !important;
+  border-bottom: 1px solid var(--border-color);
+}
+
+:root[data-theme="dark"] .cds--header__name,
+:root[data-theme="dark"] .cds--header__name--prefix {
+  color: var(--header-text) !important;
+}
+
+:root[data-theme="dark"] .cds--header__action {
+  color: var(--header-text) !important;
+}
+
+:root[data-theme="dark"] .cds--header__action:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+:root[data-theme="dark"] .cds--header__action--active {
+  background-color: var(--bg-tertiary) !important;
+  border-left: 3px solid #0f62fe;
+}
+
+/* Carbon DataTable theme support */
+:root[data-theme="dark"] .cds--data-table {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+:root[data-theme="dark"] .cds--data-table thead {
+  background-color: var(--bg-secondary) !important;
+}
+
+:root[data-theme="dark"] .cds--data-table th {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  border-top: 1px solid #1a1a1a !important;
+}
+
+:root[data-theme="dark"] .cds--data-table td {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border-top: 1px solid #1a1a1a !important;
+}
+
+:root[data-theme="dark"] .cds--data-table tbody tr:hover td {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+:root[data-theme="dark"] .cds--data-table--selected {
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* Carbon Button theme support */
+:root[data-theme="dark"] .cds--btn--ghost {
+  color: var(--text-primary) !important;
+}
+
+:root[data-theme="dark"] .cds--btn--ghost:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* Carbon ContentSwitcher theme support */
+:root[data-theme="dark"] .cds--content-switcher {
+  background-color: var(--bg-secondary) !important;
+}
+
+:root[data-theme="dark"] .cds--content-switcher-btn {
+  color: var(--text-primary) !important;
+}
+
+:root[data-theme="dark"] .cds--content-switcher-btn:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+:root[data-theme="dark"] .cds--content-switcher--selected {
+  background-color: var(--bg-primary) !important;
+}
+
 html {
   height: 100%;
   overflow: hidden;
@@ -16,6 +127,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
   overflow: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 code {

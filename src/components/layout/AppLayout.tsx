@@ -6,11 +6,12 @@ import {
   HeaderGlobalBar,
   HeaderGlobalAction,
 } from '@carbon/react';
-import { UserMultiple, Activity, Help, EarthFilled } from '@carbon/icons-react';
+import { UserMultiple, Activity, Help, EarthFilled, Asleep, Light } from '@carbon/icons-react';
 import { TransferPanel } from '../transfer/TransferPanel';
 import { LanguagePanel } from './LanguagePanel';
 import { AccountPanel } from './AccountPanel';
 import { useAuthStore } from '../../stores/useAuthStore';
+import { useThemeStore } from '../../stores/useThemeStore';
 import './AppLayout.css';
 
 interface AppLayoutProps {
@@ -24,8 +25,9 @@ interface AppLayoutProps {
 }
 
 export function AppLayout({ children, onDisconnect, onConfigureAccount, onSelectAccount, onDeleteAccount, onEditAccount, isWebAgentAvailable }: AppLayoutProps) {
-  const { t, i18n } = useTranslation(['common', 'help']);
+  const { t, i18n } = useTranslation(['common', 'help', 'connection']);
   const { savedAccounts, currentAccountId } = useAuthStore();
+  const { theme, toggleTheme } = useThemeStore();
   const currentLanguage = i18n.language.split('-')[0].toUpperCase();
   const [isTransferPanelOpen, setIsTransferPanelOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
@@ -38,11 +40,22 @@ export function AppLayout({ children, onDisconnect, onConfigureAccount, onSelect
         <HeaderName prefix={t('common:app.prefix')}>
           {t('common:app.name')}
         </HeaderName>
-        {currentAccountId && (
-          <div className="connection-info">
-            {savedAccounts.find(a => a.id === currentAccountId)?.name}
-          </div>
-        )}
+        {currentAccountId && (() => {
+          const account = savedAccounts.find(a => a.id === currentAccountId);
+          if (!account) return null;
+          
+          const protocolKey = account.credentials.protocol === 'node-user'
+            ? 'protocolNodeGen3'
+            : account.credentials.protocol === 'access-key'
+            ? 'protocolNodeGen4'
+            : 'protocolSSH';
+          
+          return (
+            <div className="connection-info">
+              {t(`connection:settings.${protocolKey}`)}: {account.name}
+            </div>
+          );
+        })()}
         <HeaderGlobalBar>
           <HeaderGlobalAction
             aria-label={t('common:labels.accounts')}
@@ -86,6 +99,12 @@ export function AppLayout({ children, onDisconnect, onConfigureAccount, onSelect
             isActive={isHelpOpen}
           >
             <Help size={20} />
+          </HeaderGlobalAction>
+          <HeaderGlobalAction
+            aria-label={t('common:theme.toggleAriaLabel')}
+            onClick={toggleTheme}
+          >
+            {theme === 'light' ? <Asleep size={20} /> : <Light size={20} />}
           </HeaderGlobalAction>
           <HeaderGlobalAction
             aria-label={t('common:language.menuAriaLabel')}

@@ -36,5 +36,10 @@
     "menuAriaLabel": "Выбрать язык",
     "title": "Язык",
     "nativeName": "Русский"
+  },
+  "theme": {
+    "toggleAriaLabel": "Переключить тему",
+    "light": "Светлая",
+    "dark": "Темная"
   }
 }

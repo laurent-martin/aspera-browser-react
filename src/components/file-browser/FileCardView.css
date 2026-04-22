@@ -18,8 +18,11 @@
     padding: 0.5rem 0.5rem 1rem 0.5rem;
     transition: all 0.2s ease;
     cursor: pointer;
-    border: 2px solid transparent;
+    border: 1px solid var(--border-color);
     outline: none;
+    background-color: var(--bg-primary);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .file-card:focus {
@@ -32,12 +35,15 @@
 
 .file-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
 }
 
 .file-card.selected {
     border: 2px solid #0f62fe;
-    background-color: #e8f4ff;
+    background-color: var(--bg-secondary);
+    box-shadow: 0 2px 8px rgba(15, 98, 254, 0.2);
 }
 
 .file-card-icon {
@@ -71,11 +77,12 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 100%;
+    color: var(--text-primary);
 }
 
 .file-card-details {
     font-size: 0.875rem;
-    color: #525252;
+    color: var(--text-secondary);
     text-align: center;
 }
 
@@ -85,5 +92,5 @@
 
 .file-card-date {
     font-size: 0.75rem;
-    color: #8d8d8d;
+    color: var(--text-tertiary);
 }

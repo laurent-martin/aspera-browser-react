@@ -36,5 +36,10 @@
     "menuAriaLabel": "言語を選択",
     "title": "言語",
     "nativeName": "日本語"
+  },
+  "theme": {
+    "toggleAriaLabel": "テーマを切り替え",
+    "light": "ライト",
+    "dark": "ダーク"
   }
 }
