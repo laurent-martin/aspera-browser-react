@@ -1,4 +1,5 @@
 import { Document, Folder, Image, Video, Link } from '@carbon/icons-react';
+import { isVideoFile, isImageFile } from '../../utils/fileHelpers';
 import type { FileItem } from '../../types';
 
 interface FileTypeIconProps {
@@ -8,13 +9,11 @@ interface FileTypeIconProps {
 }
 
 function getMediaType(file: FileItem): 'image' | 'video' | 'file' {
-  if (!file.content_type) return 'file';
-
-  if (file.content_type.startsWith('image/')) {
+  if (isImageFile(file)) {
     return 'image';
   }
 
-  if (file.content_type.startsWith('video/')) {
+  if (isVideoFile(file)) {
     return 'video';
   }
 

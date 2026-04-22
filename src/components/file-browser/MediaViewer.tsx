@@ -3,6 +3,7 @@ import { Modal } from '@carbon/react';
 import { useAuthStore } from '../../stores/useAuthStore';
 import { FileServiceFactory } from '../../services/FileServiceFactory';
 import { VideoStreamPlayerSimple } from './VideoStreamPlayerSimple';
+import { isVideoFile } from '../../utils/fileHelpers';
 import type { FileItem } from '../../types';
 import './MediaViewer.css';
 
@@ -45,10 +46,7 @@ export function MediaViewer({ file, isOpen, onClose }: MediaViewerProps) {
 
       try {
         // Determine which media type to display
-        const contentType = file.content_type || file.previewInfo?.content_type || '';
-        
-        // Check whether this is a video
-        const isVideo = contentType.startsWith('video/') || file.basename.toLowerCase().match(/\.(mp4|mov|avi|mkv|webm)$/);
+        const isVideo = isVideoFile(file);
         
         if (isVideo && credentials.access_type === 'access-key' && file.file_id) {
           // For videos over access-key connections, use streaming playback
@@ -56,7 +54,7 @@ export function MediaViewer({ file, isOpen, onClose }: MediaViewerProps) {
           const accessKeyService = fileService as {
             getVideoPreviewRange?: (fileId: string, start?: number, end?: number) => Promise<Blob>;
             getVideoPreview?: (fileId: string) => Promise<Blob>;
-            getPreview?: (fileId: string) => Promise<Blob>;
+            getImagePreview?: (fileId: string) => Promise<Blob>;
           };
 
           // Check whether streaming is supported
@@ -94,8 +92,8 @@ export function MediaViewer({ file, isOpen, onClose }: MediaViewerProps) {
           }
 
           // Fall back to the image preview if video preview failed or is unavailable
-          if (!videoPreviewSuccess && accessKeyService.getPreview) {
-            const blob = await accessKeyService.getPreview(file.file_id);
+          if (!videoPreviewSuccess && accessKeyService.getImagePreview) {
+            const blob = await accessKeyService.getImagePreview(file.file_id);
             if (cancelled) return;
             
             const url = URL.createObjectURL(blob);
@@ -114,11 +112,11 @@ export function MediaViewer({ file, isOpen, onClose }: MediaViewerProps) {
           if (credentials.access_type === 'access-key' && file.file_id) {
             const fileService = await FileServiceFactory.getService(credentials);
             const accessKeyService = fileService as {
-              getPreview?: (fileId: string) => Promise<Blob>;
+              getImagePreview?: (fileId: string) => Promise<Blob>;
             };
 
-            if (accessKeyService.getPreview) {
-              const blob = await accessKeyService.getPreview(file.file_id);
+            if (accessKeyService.getImagePreview) {
+              const blob = await accessKeyService.getImagePreview(file.file_id);
               if (cancelled) return;
               
               const url = URL.createObjectURL(blob);

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Document, Folder, Image, Video, Link } from '@carbon/icons-react';
 import { useAuthStore } from '../../stores/useAuthStore';
 import { FileServiceFactory } from '../../services/FileServiceFactory';
+import { isVideoFile, isImageFile } from '../../utils/fileHelpers';
 import type { FileItem } from '../../types';
 
 interface FilePreviewImageProps {
@@ -20,13 +21,11 @@ interface FileItemVisualProps {
 }
 
 function getMediaType(file: FileItem): 'image' | 'video' | 'file' {
-  if (!file.content_type) return 'file';
-
-  if (file.content_type.startsWith('image/')) {
+  if (isImageFile(file)) {
     return 'image';
   }
 
-  if (file.content_type.startsWith('video/')) {
+  if (isVideoFile(file)) {
     return 'video';
   }
 
@@ -66,11 +65,11 @@ function FilePreviewImage({
         if (credentials.access_type === 'access-key' && file.file_id) {
           const fileService = await FileServiceFactory.getService(credentials);
           const accessKeyService = fileService as {
-            getPreview?: (fileId: string) => Promise<Blob>;
+            getImagePreview?: (fileId: string) => Promise<Blob>;
           };
 
-          if (accessKeyService.getPreview) {
-            const blob = await accessKeyService.getPreview(file.file_id);
+          if (accessKeyService.getImagePreview) {
+            const blob = await accessKeyService.getImagePreview(file.file_id);
             if (cancelled) return;
             
             objectUrl = URL.createObjectURL(blob);

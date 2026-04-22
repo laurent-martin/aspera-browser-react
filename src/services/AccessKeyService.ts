@@ -163,13 +163,13 @@ export class AccessKeyService extends BaseNodeApiService {
     }
 
     /**
-     * Get preview image for a file
-     * GET /files/{id}/preview
+     * Get image preview for a file
+     * GET /files/{id}/preview with Accept: image/*
      *
-     * @param fileId - The file ID to get preview for
-     * @returns Blob containing the preview image
+     * @param fileId - The file ID to get image preview for
+     * @returns Blob containing the image preview
      */
-    async getPreview(fileId: string): Promise<Blob> {
+    async getImagePreview(fileId: string): Promise<Blob> {
         const cachedPreview = this.previewCache.get(fileId);
         if (cachedPreview) {
             return cachedPreview;
@@ -178,7 +178,7 @@ export class AccessKeyService extends BaseNodeApiService {
         try {
             const response = await this.client.get(`/files/${fileId}/preview`, {
                 headers: {
-                    'Accept': 'image/png',
+                    'Accept': 'image/*',
                 },
                 responseType: 'blob',
             });
@@ -186,9 +186,21 @@ export class AccessKeyService extends BaseNodeApiService {
             this.previewCache.set(fileId, response.data);
             return response.data;
         } catch (error) {
-            console.error('Failed to get preview:', error);
+            console.error('Failed to get image preview:', error);
             throw error;
         }
+    }
+
+    /**
+     * Get preview for a file (defaults to image preview for backward compatibility)
+     * GET /files/{id}/preview
+     *
+     * @param fileId - The file ID to get preview for
+     * @returns Blob containing the preview image
+     * @deprecated Use getImagePreview() or getVideoPreview() instead for clarity
+     */
+    async getPreview(fileId: string): Promise<Blob> {
+        return this.getImagePreview(fileId);
     }
 
     /**
