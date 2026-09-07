@@ -20,7 +20,7 @@ And merci IBM Bob for the vide coding.
 ## 🛠️ Tech Stack
 
 - **React 19** with TypeScript
-- **Vite 6** - Ultra-fast build tool
+- **Vite 8** - Ultra-fast build tool
 - **IBM Carbon Design System** - UI Components
 - **i18next + react-i18next** - Internationalization
 - **Zustand** - Simple and performant state management
@@ -76,7 +76,7 @@ The application can be deployed for free on GitHub Pages:
 
 # To test the GitHub Pages build locally:
 npm run build:gh-pages
-npm run preview
+npm run preview:gh-pages
 ```
 
 **Required configuration:**

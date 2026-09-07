@@ -11,6 +11,7 @@
     "build:gh-pages": "tsc -b && vite build --base=/aspera-browser-react/",
     "lint": "eslint .",
     "preview": "vite preview",
+    "preview:gh-pages": "vite preview --base=/aspera-browser-react/",
     "clobber": "rm -rf node_modules dist .vite package-lock.json",
     "generate:api-types": "curl -s 'https://raw.githubusercontent.com/laurent-martin/aspera-api-examples/refs/heads/main/openapi/IBM%20Aspera%20Node%20API-4.4.6.yaml' -o /tmp/aspera-node-api-openapi.yaml && openapi-typescript /tmp/aspera-node-api-openapi.yaml -o src/types/asperaNodeApi.ts"
   },
