@@ -12,7 +12,8 @@ And merci IBM Bob for the vide coding.
 - **Two Display Modes**: Traditional list view or modern card view
 - **Drag & Drop**: Upload files by drag and drop
 - **Transfer Management**: Track your downloads and uploads in real-time
-- **Internationalization**: Multi-language support (English/French) with i18next
+- **Multiple Connection Types**: Aspera Node API (node-user, access-key) and SSH/SFTP via `ascmd`
+- **Internationalization**: Multi-language support (9 languages) with i18next
 - **Modern Interface**: Uses IBM Carbon Design System for consistent UX
 - **TypeScript**: Fully typed code for better maintainability
 
@@ -39,8 +40,17 @@ And merci IBM Bob for the vide coding.
 # Install dependencies
 npm install
 
-# Start development server
+# Install SSH proxy backend dependencies
+cd server && npm install && cd ..
+
+# Start both Vite dev server and SSH proxy backend (port 3000 + 3001)
 npm run dev
+
+# Start only the Vite frontend (no SSH support)
+npm run dev:vite
+
+# Start only the SSH proxy backend
+npm run dev:ssh
 
 # Build for production
 npm run build
@@ -51,6 +61,10 @@ npm run preview
 # Generate API types from OpenAPI spec
 npm run generate:api-types
 ```
+
+> **Note:** SSH/SFTP connections require `ascmd` to be installed on the remote Aspera HSTS server
+> (it is part of the standard Aspera HSTS installation). The SSH proxy backend runs locally on
+> port `3001` and is proxied through Vite at `/api/ssh`.
 
 ### Deployment on GitHub Pages
 
@@ -101,6 +115,10 @@ For more details, see the [Deployment Guide](./docs/DEPLOYMENT.md).
 ## 🏗️ Project Structure
 
 ```text
+server/
+├── ascmd.js            # TLV protocol implementation (ported from Go) + SSH connection factory
+├── index.js            # Express backend — exposes /api/ssh/* routes
+└── package.json        # Backend dependencies (express, ssh2)
 src/
 ├── components/
 │   ├── common/          # Reusable components (Breadcrumb, LanguageSwitcher, etc.)
@@ -112,7 +130,12 @@ src/
 │   ├── en/            # English translations
 │   ├── fr/            # French translations
 │   └── ...            # Other languages
-├── services/           # API services (Aspera Node API)
+├── services/
+│   ├── SSHService.ts        # SSH/SFTP client (calls /api/ssh/* backend)
+│   ├── NodeUserService.ts   # Aspera Node API — node-user auth
+│   ├── AccessKeyService.ts  # Aspera Node API — access-key auth
+│   ├── FileServiceFactory.ts # Selects the right service from credentials
+│   └── IFileService.ts      # Common interface
 ├── stores/             # Zustand stores (auth, files, transfers)
 ├── types/              # TypeScript types and auto-generated API types
 ├── utils/              # Utilities (formatters, etc.)
@@ -122,13 +145,21 @@ src/
 
 ## 🔧 Configuration
 
-The application connects to an Aspera Node API server.
+The application supports three connection types, selectable in the login interface:
 
-- **URL**
-- **Username**
-- **Password**
+| Type | Description | Required fields |
+|------|-------------|-----------------|
+| `node-user` | Aspera Node API with username/password | URL, username, password |
+| `access-key` | Aspera Node API with access key | URL, access key ID, secret |
+| `ssh` | SSH/SFTP via `ascmd` on the remote server | `ssh://host:port`, username, password or private key |
 
-You can modify these settings in the connection interface.
+### SSH proxy port
+
+The SSH proxy backend listens on port `3001` by default. Override with:
+
+```bash
+SSH_PROXY_PORT=4000 npm run dev
+```
 
 ## 🔌 API Integration
 
@@ -173,6 +204,67 @@ The application supports multiple languages using i18next:
 
 Language is automatically detected from browser settings and can be changed using the language switcher component.
 
+## 🔐 SSH/SFTP Architecture
+
+SSH connections cannot be made directly from a browser. This application uses a local Node.js proxy backend (`server/`) that:
+
+1. Receives HTTP `POST` requests from the React frontend (`/api/ssh/*`)
+2. Opens an SSH connection to the remote Aspera HSTS server
+3. Executes `ascmd` — the Aspera file-system command agent — over SSH
+4. Speaks the binary TLV protocol to list files, create directories, rename, delete, etc.
+5. Returns JSON responses to the frontend
+
+### Starting the SSH proxy standalone
+
+```bash
+cd server
+npm install       # first time only
+node index.js     # listens on http://localhost:3001
+
+# Custom port
+SSH_PROXY_PORT=4000 node index.js
+```
+
+The proxy can run on any machine reachable from the browser — it does not need to be on the same host as the React app.
+
+### Configuring the proxy URL in the UI
+
+When creating or editing an SSH account, the **"SSH Proxy Backend URL"** field controls which proxy the frontend calls.
+
+| Situation | What to enter |
+|-----------|---------------|
+| Local dev (`npm run dev`) | Leave empty — auto-detected as `http://localhost:3001` |
+| Remote proxy (e.g. deployed server) | Full URL, e.g. `https://proxy.mycompany.com` |
+| GitHub Pages with external proxy | Full URL with CORS enabled on the proxy |
+
+> **Auto-detection rule:** when the app runs on `localhost`, the proxy URL defaults to
+> `http://localhost:3001`. On any other hostname the frontend uses the relative path `/api/ssh`
+> (works when the proxy is co-hosted behind the same reverse proxy).
+
+### CORS for remote deployments
+
+If the SSH proxy runs on a different origin than the React app (e.g. GitHub Pages + remote proxy),
+restrict CORS to that origin using the `ALLOWED_ORIGIN` environment variable:
+
+```bash
+ALLOWED_ORIGIN=https://<username>.github.io node index.js
+```
+
+By default (`ALLOWED_ORIGIN` unset) the proxy accepts requests from any origin.
+
+### Available routes
+
+| Route | Description |
+|-------|-------------|
+| `POST /api/ssh/info` | Get platform info |
+| `POST /api/ssh/browse` | List directory contents |
+| `POST /api/ssh/mkdir` | Create a directory |
+| `POST /api/ssh/delete` | Delete files or directories |
+| `POST /api/ssh/rename` | Rename / move |
+| `POST /api/ssh/stat` | Get file metadata |
+| `POST /api/ssh/download-setup` | Verify paths before download |
+| `POST /api/ssh/upload-setup` | Verify destination before upload |
+
 ## 🐳 Containerization & Deployment
 
 The application is ready for production deployment with:
@@ -193,13 +285,13 @@ See the [Deployment Guide](./docs/DEPLOYMENT.md) for more details.
 - [x] File download
 - [x] Media viewer (images, videos, audio)
 - [x] Video streaming support
-- [ ] Enhanced error handling
+- [x] Enhanced error handling
 - [ ] Unit and E2E tests
 - [x] Multi-language support (9 languages)
 - [x] Docker containerization
 - [x] Kubernetes deployment manifests
-- [ ] Kubernetes operator implementation
-- [ ] Dark mode
+- [x] Kubernetes operator implementation
+- [x] Dark mode
 - [x] SSH/SFTP support
 - [x] Access key authentication
 - [x] Node user authentication

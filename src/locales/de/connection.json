@@ -22,6 +22,9 @@
     "privateKey": "SSH-Privatschlüssel",
     "privateKeyPlaceholder": "Fügen Sie Ihren SSH-Privatschlüssel ein (PEM-Format)",
     "passphrase": "Passphrase (optional)",
+    "sshProxyUrl": "SSH Proxy Backend URL",
+    "sshProxyUrlPlaceholder": "e.g., http://myserver.com:3001",
+    "sshProxyUrlHelper": "Leave empty to auto-detect (localhost u2192 http://localhost:3001)",
     "accountName": "Kontoname",
     "accountNamePlaceholder": "z.B. Produktionsserver",
     "validation": {

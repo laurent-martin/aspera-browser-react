@@ -12,9 +12,20 @@ import type { TransferSpec } from '@ibm-aspera/sdk';
  * 2. Use a WebAssembly SSH extension
  * 3. Use a service worker with SSH capabilities
  */
+/** Returns the default proxy URL based on the current environment.
+ *  On localhost, points to the local SSH proxy backend.
+ *  Elsewhere, falls back to a relative path (works when the proxy is co-hosted).
+ */
+function defaultProxyUrl(): string {
+    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+        return `http://localhost:${window.location.port === '3000' ? '3001' : '3001'}/api/ssh`;
+    }
+    return '/api/ssh';
+}
+
 export class SSHService implements IFileService {
     private credentials: SSHCredentials | null = null;
-    private backendUrl: string = '/api/ssh'; // URL of the SSH proxy backend
+    private backendUrl: string = defaultProxyUrl();
     private host: string = '';
     private port: number = 22;
 
@@ -24,6 +35,11 @@ export class SSHService implements IFileService {
         }
 
         this.credentials = credentials as SSHCredentials;
+
+        // Use explicitly configured proxy URL, or auto-detect
+        this.backendUrl = this.credentials.proxyUrl
+            ? `${this.credentials.proxyUrl.replace(/\/$/, '')}/api/ssh`
+            : defaultProxyUrl();
 
         // Parse and cache SSH URL
         const parsed = this.parseSSHUrl(this.credentials.url);
@@ -67,7 +83,8 @@ export class SSHService implements IFileService {
         });
 
         if (!response.ok) {
-            throw new Error(`SSH connection failed: ${response.statusText}`);
+            const body = await response.json().catch(() => null);
+            throw new Error(`SSH connection failed: ${body?.error ?? response.statusText}`);
         }
 
         await response.json();
@@ -122,7 +139,8 @@ export class SSHService implements IFileService {
         });
 
         if (!response.ok) {
-            throw new Error(`Browse failed: ${response.statusText}`);
+            const body = await response.json().catch(() => null);
+            throw new Error(`Browse failed: ${body?.error ?? response.statusText}`);
         }
 
         const data = await response.json();
@@ -154,74 +172,42 @@ export class SSHService implements IFileService {
     }
 
     /**
-     * Build a transfer spec for downloading files via SSH
-     * Creates a manual transfer spec with SSH connection information
+     * Build a transfer spec for SSH transfers (download or upload)
      */
     async buildDownloadTransferSpec(paths: string[]): Promise<TransferSpec> {
-        if (!this.credentials) {
-            throw new Error('Credentials not set');
-        }
-
-        const transferSpec: TransferSpec = {
-            direction: 'receive',
-            remote_host: this.host,
-            remote_user: this.credentials.username,
-            ssh_port: this.port,
-            fasp_port: this.port === 22 ? 33001 : this.port, // Use standard FASP port if SSH is on 22
-            paths: paths.map(path => ({
-                source: path,
-            })),
-            target_rate_kbps: 100000, // 100 Mbps by default
-            rate_policy: 'fair',
-            cipher: 'aes128',
-            resume_policy: 'sparse_checksum',
-        };
-
-        // Add authentication based on method
-        if (this.credentials.authMethod === 'password') {
-            (transferSpec as Record<string, unknown>).remote_password = this.credentials.password;
-        } else {
-            // For private key authentication, we would need to handle this differently
-            // This is a placeholder - actual implementation would depend on how the SDK handles SSH keys
-            throw new Error('Private key authentication not yet implemented for SSH transfers');
-        }
-
-        return transferSpec;
+        return this.buildServerTransferSpec('receive', paths);
     }
 
-    /**
-     * Build a transfer spec for uploading files via SSH
-     * Creates a manual transfer spec with SSH connection information
-     */
     async buildUploadTransferSpec(paths: string[], destinationPath: string): Promise<TransferSpec> {
+        return this.buildServerTransferSpec('send', paths, destinationPath);
+    }
+
+    private buildServerTransferSpec(direction: 'send' | 'receive', paths: string[], destinationPath?: string): TransferSpec {
         if (!this.credentials) {
             throw new Error('Credentials not set');
         }
+        if (this.credentials.authMethod !== 'password') {
+            throw new Error('Private key authentication not yet implemented for SSH transfers');
+        }
 
         const transferSpec: TransferSpec = {
-            direction: 'send',
+            direction,
             remote_host: this.host,
             remote_user: this.credentials.username,
             ssh_port: this.port,
-            fasp_port: this.port === 22 ? 33001 : this.port, // Use standard FASP port if SSH is on 22
-            paths: paths.map(path => ({
-                source: path,
-            })),
-            destination_root: destinationPath,
-            target_rate_kbps: 100000, // 100 Mbps by default
+            fasp_port: this.port === 22 ? 33001 : this.port,
+            paths: paths.map(path => ({ source: path })),
+            target_rate_kbps: 100000,
             rate_policy: 'fair',
-            cipher: 'aes128',
+            cipher: 'aes-128' as 'aes128',
             resume_policy: 'sparse_checksum',
         };
 
-        // Add authentication based on method
-        if (this.credentials.authMethod === 'password') {
-            (transferSpec as Record<string, unknown>).remote_password = this.credentials.password;
-        } else {
-            // For private key authentication, we would need to handle this differently
-            // This is a placeholder - actual implementation would depend on how the SDK handles SSH keys
-            throw new Error('Private key authentication not yet implemented for SSH transfers');
+        if (direction === 'send' && destinationPath) {
+            transferSpec.destination_root = destinationPath;
         }
+
+        (transferSpec as Record<string, unknown>).remote_password = this.credentials.password;
 
         return transferSpec;
     }
@@ -247,7 +233,8 @@ export class SSHService implements IFileService {
         });
 
         if (!response.ok) {
-            throw new Error(`Download setup failed: ${response.statusText}`);
+            const body = await response.json().catch(() => null);
+            throw new Error(`Download setup failed: ${body?.error ?? response.statusText}`);
         }
 
         return await response.json();
@@ -275,16 +262,19 @@ export class SSHService implements IFileService {
         });
 
         if (!response.ok) {
-            throw new Error(`Upload setup failed: ${response.statusText}`);
+            const body = await response.json().catch(() => null);
+            throw new Error(`Upload setup failed: ${body?.error ?? response.statusText}`);
         }
 
         return await response.json();
     }
 
-    async createDir(path: string) {
+    async createDir(parentPath: string, name: string) {
         if (!this.credentials) {
             throw new Error('Credentials not set');
         }
+
+        const path = `${parentPath.replace(/\/$/, '')}/${name}`;
 
         const response = await fetch(`${this.backendUrl}/mkdir`, {
             method: 'POST',
@@ -302,7 +292,8 @@ export class SSHService implements IFileService {
         });
 
         if (!response.ok) {
-            throw new Error(`Create directory failed: ${response.statusText}`);
+            const body = await response.json().catch(() => null);
+            throw new Error(`Create directory failed: ${body?.error ?? response.statusText}`);
         }
 
         return await response.json();
@@ -329,7 +320,8 @@ export class SSHService implements IFileService {
         });
 
         if (!response.ok) {
-            throw new Error(`Delete failed: ${response.statusText}`);
+            const body = await response.json().catch(() => null);
+            throw new Error(`Delete failed: ${body?.error ?? response.statusText}`);
         }
 
         return await response.json();
@@ -357,7 +349,8 @@ export class SSHService implements IFileService {
         });
 
         if (!response.ok) {
-            throw new Error(`Rename failed: ${response.statusText}`);
+            const body = await response.json().catch(() => null);
+            throw new Error(`Rename failed: ${body?.error ?? response.statusText}`);
         }
 
         return await response.json();
@@ -388,7 +381,8 @@ export class SSHService implements IFileService {
         });
 
         if (!response.ok) {
-            throw new Error(`Get file info failed: ${response.statusText}`);
+            const body = await response.json().catch(() => null);
+            throw new Error(`Get file info failed: ${body?.error ?? response.statusText}`);
         }
 
         return await response.json();

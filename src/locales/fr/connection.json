@@ -22,6 +22,9 @@
     "privateKey": "Clé privée SSH",
     "privateKeyPlaceholder": "Collez votre clé privée SSH (format PEM)",
     "passphrase": "Phrase de passe (optionnel)",
+    "sshProxyUrl": "URL du proxy SSH backend",
+    "sshProxyUrlPlaceholder": "ex: http://monserveur.com:3001",
+    "sshProxyUrlHelper": "Laisser vide pour auto-détecter (localhost → http://localhost:3001)",
     "accountName": "Nom du compte",
     "accountNamePlaceholder": "Ex: Serveur de production",
     "validation": {

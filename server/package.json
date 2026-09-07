@@ -1,0 +1,15 @@
+{
+  "name": "aspera-browser-ssh-proxy",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "SSH proxy backend for aspera-browser-react",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^4.19.2",
+    "ssh2": "^1.16.0"
+  }
+}

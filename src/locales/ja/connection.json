@@ -22,6 +22,9 @@
     "privateKey": "SSH秘密鍵",
     "privateKeyPlaceholder": "SSH秘密鍵を貼り付けてください（PEM形式）",
     "passphrase": "パスフレーズ（オプション）",
+    "sshProxyUrl": "SSH Proxy Backend URL",
+    "sshProxyUrlPlaceholder": "e.g., http://myserver.com:3001",
+    "sshProxyUrlHelper": "Leave empty to auto-detect (localhost u2192 http://localhost:3001)",
     "accountName": "アカウント名",
     "accountNamePlaceholder": "例: 本番サーバー",
     "validation": {

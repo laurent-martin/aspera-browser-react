@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently -n ssh,vite -c cyan,green \"node server/index.js\" \"vite\"",
+    "dev:vite": "vite",
+    "dev:ssh": "node server/index.js",
     "build": "tsc -b && vite build",
     "build:gh-pages": "tsc -b && vite build --base=/aspera-browser-react/",
     "lint": "eslint .",
@@ -36,6 +38,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^10.0.5",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",

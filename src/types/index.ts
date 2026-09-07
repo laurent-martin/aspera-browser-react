@@ -53,6 +53,8 @@ export interface SSHCredentials extends BaseCredentials {
     password?: string;
     privateKey?: string;
     passphrase?: string;
+    /** URL of the SSH proxy backend. Auto-detected when running on localhost. */
+    proxyUrl?: string;
 }
 
 // Union type for all credential types

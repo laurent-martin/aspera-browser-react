@@ -1024,6 +1024,15 @@ function App() {
                     />
                   </>
                 )}
+                <TextInput
+                  id="sshProxyUrl"
+                  labelText={t('settings.sshProxyUrl')}
+                  value={(formData as SSHCredentials).proxyUrl || ''}
+                  onChange={(e) => setFormData({ ...formData, proxyUrl: e.target.value || undefined } as SSHCredentials)}
+                  disabled={isLoading}
+                  placeholder={t('settings.sshProxyUrlPlaceholder')}
+                  helperText={t('settings.sshProxyUrlHelper')}
+                />
               </>
             ) : (
               <>

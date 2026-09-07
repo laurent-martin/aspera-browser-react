@@ -22,6 +22,9 @@
     "privateKey": "مفتاح SSH الخاص",
     "privateKeyPlaceholder": "الصق مفتاح SSH الخاص بك (تنسيق PEM)",
     "passphrase": "عبارة المرور (اختياري)",
+    "sshProxyUrl": "SSH Proxy Backend URL",
+    "sshProxyUrlPlaceholder": "e.g., http://myserver.com:3001",
+    "sshProxyUrlHelper": "Leave empty to auto-detect (localhost u2192 http://localhost:3001)",
     "accountName": "اسم الحساب",
     "accountNamePlaceholder": "مثال: خادم الإنتاج",
     "validation": {
