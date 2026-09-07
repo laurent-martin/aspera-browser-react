@@ -916,6 +916,7 @@ function App() {
                     username: '',
                     authMethod: 'password',
                     password: '',
+                    proxyUrl: window.location.hostname === 'localhost' ? 'http://localhost:3001' : '',
                   } as SSHCredentials);
                 } else {
                   setFormData({
@@ -1028,10 +1029,15 @@ function App() {
                   id="sshProxyUrl"
                   labelText={t('settings.sshProxyUrl')}
                   value={(formData as SSHCredentials).proxyUrl || ''}
-                  onChange={(e) => setFormData({ ...formData, proxyUrl: e.target.value || undefined } as SSHCredentials)}
+                  onChange={(e) => {
+                    setFormData({ ...formData, proxyUrl: e.target.value || undefined } as SSHCredentials);
+                    setTouched({ ...touched, proxyUrl: true });
+                  }}
+                  onBlur={() => setTouched({ ...touched, proxyUrl: true })}
                   disabled={isLoading}
                   placeholder={t('settings.sshProxyUrlPlaceholder')}
-                  helperText={t('settings.sshProxyUrlHelper')}
+                  invalid={touched.proxyUrl && !!validationErrors.proxyUrl}
+                  invalidText={validationErrors.proxyUrl}
                 />
               </>
             ) : (

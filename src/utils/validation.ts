@@ -111,6 +111,11 @@ export function validateSSHCredentials(credentials: SSHCredentials): { valid: bo
         }
     }
 
+    // Validate proxy URL (mandatory)
+    if (!credentials.proxyUrl || credentials.proxyUrl.trim() === '') {
+        errors.proxyUrl = 'SSH proxy backend URL is required';
+    }
+
     return {
         valid: Object.keys(errors).length === 0,
         errors
@@ -134,7 +139,7 @@ export function validateCredentials(credentials: ConnectionCredentials): { valid
 export function hasAllMandatoryFields(credentials: ConnectionCredentials): boolean {
     if (credentials.access_type === 'ssh') {
         const sshCreds = credentials as SSHCredentials;
-        const hasBasicFields = !!(sshCreds.url && sshCreds.username);
+        const hasBasicFields = !!(sshCreds.url && sshCreds.username && sshCreds.proxyUrl);
 
         if (sshCreds.authMethod === 'password') {
             return hasBasicFields && !!sshCreds.password;
