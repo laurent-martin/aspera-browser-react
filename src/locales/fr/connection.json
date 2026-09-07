@@ -24,7 +24,7 @@
     "passphrase": "Phrase de passe (optionnel)",
     "sshProxyUrl": "URL du proxy SSH backend",
     "sshProxyUrlPlaceholder": "ex: http://monserveur.com:3001",
-    "sshProxyUrlHelper": "Laisser vide pour auto-détecter (localhost → http://localhost:3001)",
+    "sshProxyUrlHelper": "Requis. Sur localhost, la valeur par défaut est http://localhost:3001",
     "accountName": "Nom du compte",
     "accountNamePlaceholder": "Ex: Serveur de production",
     "validation": {
@@ -34,7 +34,8 @@
       "invalidUrlFormat": "Format d'URL invalide",
       "usernameRequired": "Le nom d'utilisateur est requis",
       "passwordRequired": "Le mot de passe est requis",
-      "privateKeyRequired": "La clé privée est requise"
+      "privateKeyRequired": "La clé privée est requise",
+      "proxyUrlRequired": "L'URL du proxy SSH backend est requise"
     }
   },
   "welcome": {

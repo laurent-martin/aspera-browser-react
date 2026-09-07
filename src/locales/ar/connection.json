@@ -22,9 +22,9 @@
     "privateKey": "مفتاح SSH الخاص",
     "privateKeyPlaceholder": "الصق مفتاح SSH الخاص بك (تنسيق PEM)",
     "passphrase": "عبارة المرور (اختياري)",
-    "sshProxyUrl": "SSH Proxy Backend URL",
-    "sshProxyUrlPlaceholder": "e.g., http://myserver.com:3001",
-    "sshProxyUrlHelper": "Leave empty to auto-detect (localhost u2192 http://localhost:3001)",
+    "sshProxyUrl": "عنوان URL لخادم وكيل SSH",
+    "sshProxyUrlPlaceholder": "مثال: http://myserver.com:3001",
+    "sshProxyUrlHelper": "مطلوب. على localhost, القيمة الافتراضية هي http://localhost:3001",
     "accountName": "اسم الحساب",
     "accountNamePlaceholder": "مثال: خادم الإنتاج",
     "validation": {
@@ -34,7 +34,8 @@
       "invalidUrlFormat": "تنسيق URL غير صالح",
       "usernameRequired": "اسم المستخدم مطلوب",
       "passwordRequired": "كلمة المرور مطلوبة",
-      "privateKeyRequired": "المفتاح الخاص مطلوب"
+      "privateKeyRequired": "المفتاح الخاص مطلوب",
+      "proxyUrlRequired": "عنوان URL لوكيل SSH الخلفي مطلوب"
     }
   },
   "welcome": {

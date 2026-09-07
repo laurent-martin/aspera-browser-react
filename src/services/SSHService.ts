@@ -63,23 +63,37 @@ export class SSHService implements IFileService {
             };
     }
 
+    /**
+     * Wraps fetch to produce a clear error when the SSH proxy backend is unreachable.
+     */
+    private async request(path: string, body: unknown): Promise<Response> {
+        const url = `${this.backendUrl}${path}`;
+        let response: Response;
+        try {
+            response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body),
+            });
+        } catch (err) {
+            throw new Error(
+                `SSH proxy backend unreachable at ${this.backendUrl} — ${err instanceof Error ? err.message : String(err)}`
+            );
+        }
+        return response;
+    }
+
     async info(): Promise<NodeInfo> {
         if (!this.credentials) {
             throw new Error('Credentials not set');
         }
 
-        const response = await fetch(`${this.backendUrl}/info`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                host: this.host,
-                port: this.port,
-                username: this.credentials.username,
-                authMethod: this.credentials.authMethod,
-                ...this.getAuthPayload(),
-            }),
+        const response = await this.request('/info', {
+            host: this.host,
+            port: this.port,
+            username: this.credentials.username,
+            authMethod: this.credentials.authMethod,
+            ...this.getAuthPayload(),
         });
 
         if (!response.ok) {
@@ -123,19 +137,13 @@ export class SSHService implements IFileService {
             throw new Error('Credentials not set');
         }
 
-        const response = await fetch(`${this.backendUrl}/browse`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                host: this.host,
-                port: this.port,
-                username: this.credentials.username,
-                authMethod: this.credentials.authMethod,
-                ...this.getAuthPayload(),
-                path,
-            }),
+        const response = await this.request('/browse', {
+            host: this.host,
+            port: this.port,
+            username: this.credentials.username,
+            authMethod: this.credentials.authMethod,
+            ...this.getAuthPayload(),
+            path,
         });
 
         if (!response.ok) {
@@ -217,19 +225,13 @@ export class SSHService implements IFileService {
             throw new Error('Credentials not set');
         }
 
-        const response = await fetch(`${this.backendUrl}/download-setup`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                host: this.host,
-                port: this.port,
-                username: this.credentials.username,
-                authMethod: this.credentials.authMethod,
-                ...this.getAuthPayload(),
-                paths: paths.map(p => p.source),
-            }),
+        const response = await this.request('/download-setup', {
+            host: this.host,
+            port: this.port,
+            username: this.credentials.username,
+            authMethod: this.credentials.authMethod,
+            ...this.getAuthPayload(),
+            paths: paths.map(p => p.source),
         });
 
         if (!response.ok) {
@@ -245,20 +247,14 @@ export class SSHService implements IFileService {
             throw new Error('Credentials not set');
         }
 
-        const response = await fetch(`${this.backendUrl}/upload-setup`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                host: this.host,
-                port: this.port,
-                username: this.credentials.username,
-                authMethod: this.credentials.authMethod,
-                ...this.getAuthPayload(),
-                paths: paths.map(p => p.source),
-                destination: destinationPath,
-            }),
+        const response = await this.request('/upload-setup', {
+            host: this.host,
+            port: this.port,
+            username: this.credentials.username,
+            authMethod: this.credentials.authMethod,
+            ...this.getAuthPayload(),
+            paths: paths.map(p => p.source),
+            destination: destinationPath,
         });
 
         if (!response.ok) {
@@ -276,19 +272,13 @@ export class SSHService implements IFileService {
 
         const path = `${parentPath.replace(/\/$/, '')}/${name}`;
 
-        const response = await fetch(`${this.backendUrl}/mkdir`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                host: this.host,
-                port: this.port,
-                username: this.credentials.username,
-                authMethod: this.credentials.authMethod,
-                ...this.getAuthPayload(),
-                path,
-            }),
+        const response = await this.request('/mkdir', {
+            host: this.host,
+            port: this.port,
+            username: this.credentials.username,
+            authMethod: this.credentials.authMethod,
+            ...this.getAuthPayload(),
+            path,
         });
 
         if (!response.ok) {
@@ -304,19 +294,13 @@ export class SSHService implements IFileService {
             throw new Error('Credentials not set');
         }
 
-        const response = await fetch(`${this.backendUrl}/delete`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                host: this.host,
-                port: this.port,
-                username: this.credentials.username,
-                authMethod: this.credentials.authMethod,
-                ...this.getAuthPayload(),
-                paths: ids,
-            }),
+        const response = await this.request('/delete', {
+            host: this.host,
+            port: this.port,
+            username: this.credentials.username,
+            authMethod: this.credentials.authMethod,
+            ...this.getAuthPayload(),
+            paths: ids,
         });
 
         if (!response.ok) {
@@ -332,20 +316,14 @@ export class SSHService implements IFileService {
             throw new Error('Credentials not set');
         }
 
-        const response = await fetch(`${this.backendUrl}/rename`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                host: this.host,
-                port: this.port,
-                username: this.credentials.username,
-                authMethod: this.credentials.authMethod,
-                ...this.getAuthPayload(),
-                oldPath: path,
-                newPath,
-            }),
+        const response = await this.request('/rename', {
+            host: this.host,
+            port: this.port,
+            username: this.credentials.username,
+            authMethod: this.credentials.authMethod,
+            ...this.getAuthPayload(),
+            oldPath: path,
+            newPath,
         });
 
         if (!response.ok) {
@@ -365,19 +343,13 @@ export class SSHService implements IFileService {
             throw new Error('Credentials not set');
         }
 
-        const response = await fetch(`${this.backendUrl}/stat`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                host: this.host,
-                port: this.port,
-                username: this.credentials.username,
-                authMethod: this.credentials.authMethod,
-                ...this.getAuthPayload(),
-                path: id,
-            }),
+        const response = await this.request('/stat', {
+            host: this.host,
+            port: this.port,
+            username: this.credentials.username,
+            authMethod: this.credentials.authMethod,
+            ...this.getAuthPayload(),
+            path: id,
         });
 
         if (!response.ok) {

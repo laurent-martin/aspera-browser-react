@@ -22,9 +22,9 @@
     "privateKey": "SSH私钥",
     "privateKeyPlaceholder": "粘贴您的SSH私钥（PEM格式）",
     "passphrase": "密码短语（可选）",
-    "sshProxyUrl": "SSH Proxy Backend URL",
-    "sshProxyUrlPlaceholder": "e.g., http://myserver.com:3001",
-    "sshProxyUrlHelper": "Leave empty to auto-detect (localhost u2192 http://localhost:3001)",
+    "sshProxyUrl": "SSH代理后端URL",
+    "sshProxyUrlPlaceholder": "例如: http://myserver.com:3001",
+    "sshProxyUrlHelper": "必填。在 localhost 上，默认为 http://localhost:3001",
     "accountName": "账户名称",
     "accountNamePlaceholder": "例如：生产服务器",
     "validation": {
@@ -34,7 +34,8 @@
       "invalidUrlFormat": "无效的URL格式",
       "usernameRequired": "用户名是必需的",
       "passwordRequired": "密码是必需的",
-      "privateKeyRequired": "私钥是必需的"
+      "privateKeyRequired": "私钥是必需的",
+      "proxyUrlRequired": "SSH 代理后端 URL 是必需的"
     }
   },
   "welcome": {

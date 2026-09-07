@@ -22,9 +22,9 @@
     "privateKey": "Clave privada SSH",
     "privateKeyPlaceholder": "Pegue su clave privada SSH (formato PEM)",
     "passphrase": "Frase de contraseña (opcional)",
-    "sshProxyUrl": "SSH Proxy Backend URL",
-    "sshProxyUrlPlaceholder": "e.g., http://myserver.com:3001",
-    "sshProxyUrlHelper": "Leave empty to auto-detect (localhost u2192 http://localhost:3001)",
+    "sshProxyUrl": "URL del proxy SSH backend",
+    "sshProxyUrlPlaceholder": "ej. http://miservidor.com:3001",
+    "sshProxyUrlHelper": "Obligatorio. En localhost, el valor predeterminado es http://localhost:3001",
     "accountName": "Nombre de la cuenta",
     "accountNamePlaceholder": "ej. Servidor de producción",
     "validation": {
@@ -34,7 +34,8 @@
       "invalidUrlFormat": "Formato de URL inválido",
       "usernameRequired": "El nombre de usuario es obligatorio",
       "passwordRequired": "La contraseña es obligatoria",
-      "privateKeyRequired": "La clave privada es obligatoria"
+      "privateKeyRequired": "La clave privada es obligatoria",
+      "proxyUrlRequired": "La URL del proxy SSH backend es obligatoria"
     }
   },
   "welcome": {

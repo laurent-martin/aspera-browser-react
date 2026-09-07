@@ -22,9 +22,9 @@
     "privateKey": "Закрытый ключ SSH",
     "privateKeyPlaceholder": "Вставьте ваш закрытый ключ SSH (формат PEM)",
     "passphrase": "Парольная фраза (необязательно)",
-    "sshProxyUrl": "SSH Proxy Backend URL",
-    "sshProxyUrlPlaceholder": "e.g., http://myserver.com:3001",
-    "sshProxyUrlHelper": "Leave empty to auto-detect (localhost u2192 http://localhost:3001)",
+    "sshProxyUrl": "URL SSH-прокси бэкенда",
+    "sshProxyUrlPlaceholder": "например: http://мойсервер.com:3001",
+    "sshProxyUrlHelper": "Обязательно. На localhost по умолчанию http://localhost:3001",
     "accountName": "Имя учетной записи",
     "accountNamePlaceholder": "например: Производственный сервер",
     "validation": {
@@ -34,7 +34,8 @@
       "invalidUrlFormat": "Неверный формат URL",
       "usernameRequired": "Имя пользователя обязательно",
       "passwordRequired": "Пароль обязателен",
-      "privateKeyRequired": "Закрытый ключ обязателен"
+      "privateKeyRequired": "Закрытый ключ обязателен",
+      "proxyUrlRequired": "URL SSH-прокси обязателен"
     }
   },
   "welcome": {
