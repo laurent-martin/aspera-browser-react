@@ -217,13 +217,16 @@ SSH connections cannot be made directly from a browser. This application uses a 
 ### Starting the SSH proxy standalone
 
 ```bash
-cd server
-npm install       # first time only
-node index.js     # listens on http://localhost:3001
+# From the project root
+npm run dev:ssh
 
-# Custom port
-SSH_PROXY_PORT=4000 node index.js
+# Or standalone (e.g. on a separate machine)
+cd server && npm install && npm start
 ```
+
+> [!NOTE]
+> The default port is `3001`. Override it with the `SSH_PROXY_PORT` environment variable:
+> `SSH_PROXY_PORT=4000 npm run dev:ssh`
 
 The proxy can run on any machine reachable from the browser — it does not need to be on the same host as the React app.
 
